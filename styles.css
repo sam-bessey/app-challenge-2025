@@ -10,6 +10,13 @@ body {
     font-style: normal;
 }
 
+.mulish-light {
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 10;
+    font-style: normal;
+}
+
 .primaryButton {
     width: 80vw;
     margin-left: calc(10vw - 15px);
@@ -25,4 +32,11 @@ body {
     border-radius: 15px;
     text-decoration: none;
     color: black;
+    border: 0;
+    font-size: 1rem;
+}
+
+.time {
+    text-align: center;
+    font-size: 5rem;
 }
