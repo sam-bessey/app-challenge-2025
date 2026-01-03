@@ -1,3 +1,28 @@
 body {
     background-color: thistle;
+    margin: 0;
+}
+
+.mulish-normal {
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.primaryButton {
+    width: 80vw;
+    margin-left: calc(10vw - 15px);
+    margin-right: calc(10vw - 15px);
+    padding: 15px;
+    text-align: center;
+    background-image: linear-gradient(
+        45deg,
+        rgb(148, 207, 238),
+        rgb(185, 114, 201)
+    );
+    display: inline-block;
+    border-radius: 15px;
+    text-decoration: none;
+    color: black;
 }
