@@ -60,6 +60,10 @@ function saveDrive() {
     // Format to save:
     // [number of minutes, date and time, night true/false]
 
+    // Change save button to say "saving"
+    document.getElementById("saveButton").innerText = "Saving...";
+    document.getElementById("saveButton").style.filter = "grayscale()";
+
     // Find number of minutes driven
     const minutesToSave = hours * 60 + minutes;
 
@@ -67,7 +71,7 @@ function saveDrive() {
     // Example formatted date: 1/4/2025 14:45
     const date = new Date();
     const dateToSave =
-        date.getMonth() +
+        Number(Number(date.getMonth()) + 1) + // Add 1 to the month because getMonth() gives month numbers from 0-11, not 1-12
         "/" +
         date.getDate() +
         "/" +
@@ -88,8 +92,11 @@ function saveDrive() {
     // Get the current list of drives and then save the new drive
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
     drives.push([minutesToSave, dateToSave, isNight]);
-    const toSave = JSON.stringify(drives)
-    localStorage.setItem("drives", toSave)
+    const toSave = JSON.stringify(drives);
+    localStorage.setItem("drives", toSave);
+
+    // Redirect to homepage once saving finishes
+    window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
