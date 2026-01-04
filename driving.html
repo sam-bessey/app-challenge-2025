@@ -15,10 +15,17 @@
             <span id="hours">00</span>:<span id="minutes">00</span
             ><span style="font-size: 3rem">:<span id="seconds">00</span></span>
         </h1>
-        <select>
+
+        <select class="select" id="dayAndNight">
             <option>Day</option>
             <option>Night</option>
         </select>
-        <button class="mulish-normal primaryButton">Done</button>
+
+        <button id="doneButton" onclick="stopTimer()" class="mulish-normal button primaryButton">Done</button>
+
+        <div id="saveUI" hidden>
+            <a href="index.html" class="mulish-normal button redButton halfButton">Delete</a>
+            <button onclick="saveDrive()" class="mulish-normal button primaryButton halfButton">Save</button>
+        </div>
     </body>
 </html>
