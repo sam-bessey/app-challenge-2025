@@ -48,6 +48,50 @@ function timer() {
     }
 }
 
+function stopTimer() {
+    // Stops timer and shows UI for saving
+
+    timing = false;
+    document.getElementById("saveUI").hidden = false;
+    document.getElementById("doneButton").setAttribute("hidden", "");
+}
+
+function saveDrive() {
+    // Format to save:
+    // [number of minutes, date and time, night true/false]
+
+    // Find number of minutes driven
+    const minutesToSave = hours * 60 + minutes;
+
+    // Get date and format it in a user-friendly way
+    // Example formatted date: 1/4/2025 14:45
+    const date = new Date();
+    const dateToSave =
+        date.getMonth() +
+        "/" +
+        date.getDate() +
+        "/" +
+        date.getFullYear() +
+        " " +
+        date.getHours() +
+        ":" +
+        date.getMinutes();
+
+    // Is it night?
+    let isNight;
+    if (document.getElementById("dayAndNight").value == "Day") {
+        isNight = false;
+    } else {
+        isNight = true;
+    }
+
+    // Get the current list of drives and then save the new drive
+    const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
+    drives.push([minutesToSave, dateToSave, isNight]);
+    const toSave = JSON.stringify(drives)
+    localStorage.setItem("drives", toSave)
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     timer();
 });
