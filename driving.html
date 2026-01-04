@@ -9,6 +9,7 @@
             rel="stylesheet"
         />
         <script src="timer.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
         <h1 class="mulish-light time">
@@ -16,16 +17,32 @@
             ><span style="font-size: 3rem">:<span id="seconds">00</span></span>
         </h1>
 
-        <select class="select" id="dayAndNight">
+        <select class="bigSelect" id="dayAndNight">
             <option>Day</option>
             <option>Night</option>
         </select>
 
-        <button id="doneButton" onclick="stopTimer()" class="mulish-normal button primaryButton">Done</button>
+        <button
+            id="doneButton"
+            onclick="stopTimer()"
+            class="mulish-normal button primaryButton"
+        >
+            Done
+        </button>
 
         <div id="saveUI" hidden>
-            <a href="index.html" class="mulish-normal button redButton halfButton">Delete</a>
-            <button onclick="saveDrive()" class="mulish-normal button primaryButton halfButton">Save</button>
+            <a
+                href="index.html"
+                class="mulish-normal button redButton halfButton"
+                >Delete</a
+            >
+            <button
+                onclick="saveDrive()"
+                id="saveButton"
+                class="mulish-normal button primaryButton halfButton"
+            >
+                Save
+            </button>
         </div>
     </body>
 </html>
