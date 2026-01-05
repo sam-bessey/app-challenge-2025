@@ -29,9 +29,21 @@ function displayDrives() {
             time.innerText = time.innerText + " Night";
         }
 
+        const deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "button circleButton redButton")
+        deleteButton.onclick = {
+            // Do something here
+        };
+
+        const deleteIcon = document.createElement("span");
+        deleteIcon.setAttribute("class", "material-symbols-outlined");
+        deleteIcon.innerText = "delete";
+        deleteButton.appendChild(deleteIcon); // Add icon to the button
+
         // Add date and time to the list item
         item.appendChild(date);
         item.appendChild(time);
+        item.appendChild(deleteButton)
 
         // Add the item to the list
         driveList.appendChild(item);
