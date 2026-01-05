@@ -76,6 +76,14 @@ form:invalid > button {
     margin-right: calc(2.5vw - 1px);
 }
 
+.circleButton {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+    padding: 0;
+}
+
 .backButton {
     margin: 0;
     text-align: left;
