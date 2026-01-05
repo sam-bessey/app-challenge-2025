@@ -1,5 +1,3 @@
-console.log("hello world");
-
 function divideWithRemainder(number1, number2) {
     let quotient = Math.floor(number1 / number2)
     let remainder = number1 % number2
