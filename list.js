@@ -15,6 +15,7 @@ function displayDrives() {
     // Display all drives
     for (let i = 0; i < drives.length; i++) {
         const item = document.createElement("li");
+        item.setAttribute("class", "driveListItem")
 
         const date = document.createElement("h4");
         date.innerText = drives[i][1];
@@ -34,7 +35,6 @@ function displayDrives() {
 
         // Add the item to the list
         driveList.appendChild(item);
-        console.log("done", i);
     }
 }
 
