@@ -30,7 +30,7 @@ function displayDrives() {
         }
 
         const deleteButton = document.createElement("button");
-        deleteButton.setAttribute("class", "button circleButton redButton")
+        deleteButton.setAttribute("class", "button circleButton rightButton redButton")
         deleteButton.onclick = {
             // Do something here
         };

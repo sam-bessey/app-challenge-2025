@@ -84,6 +84,12 @@ form:invalid > button {
     padding: 0;
 }
 
+.rightButton {
+    position: absolute;
+    margin-left: calc(100vw - 6.5rem);
+    margin-top: -4.5rem;
+}
+
 .backButton {
     margin: 0;
     text-align: left;
