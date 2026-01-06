@@ -16,6 +16,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
+        <div id="confirm" class="confirm" hidden>
+            <h2 class="centred mulish-normal">Delete this drive?</h2>
+            <p class="mulish-normal">You won't be able to undo this, although you can always save a past drive.</p>
+            <button class="button halfButton secondaryButton">Cancel</button>
+            <button class="button halfButton redButton">Delete</button>
+        </div>
         <a href="index.html" class="mulish-normal button backButton"
             ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
@@ -24,7 +30,7 @@
         <button
             onclick="{alert('Exporting drives is not available yet.')}"
             class="mulish-normal button primaryButton"
-            style="filter: grayscale();"
+            style="filter: grayscale()"
         >
             Export
         </button>

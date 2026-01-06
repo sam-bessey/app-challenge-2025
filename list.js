@@ -15,7 +15,7 @@ function displayDrives() {
     // Display all drives
     for (let i = 0; i < drives.length; i++) {
         const item = document.createElement("li");
-        item.setAttribute("class", "driveListItem")
+        item.setAttribute("class", "driveListItem");
 
         const date = document.createElement("h4");
         date.innerText = drives[i][1];
@@ -30,10 +30,13 @@ function displayDrives() {
         }
 
         const deleteButton = document.createElement("button");
-        deleteButton.setAttribute("class", "button circleButton rightButton redButton")
-        deleteButton.onclick = {
-            // Do something here
-        };
+        deleteButton.setAttribute(
+            "class",
+            "button circleButton rightButton redButton"
+        );
+        deleteButton.onclick = () => {
+            document.getElementById("confirm").hidden = false;
+        }
 
         const deleteIcon = document.createElement("span");
         deleteIcon.setAttribute("class", "material-symbols-outlined");
@@ -43,7 +46,7 @@ function displayDrives() {
         // Add date and time to the list item
         item.appendChild(date);
         item.appendChild(time);
-        item.appendChild(deleteButton)
+        item.appendChild(deleteButton);
 
         // Add the item to the list
         driveList.appendChild(item);
