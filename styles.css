@@ -19,6 +19,7 @@ form:invalid > button {
 
 .centred {
     text-align: center;
+    margin-top: 0;
 }
 
 .mulish-normal {
@@ -73,6 +74,29 @@ form:invalid > button {
     width: 45vw;
     margin-left: calc(2.5vw - 1px);
     margin-right: calc(2.5vw - 1px);
+}
+
+.circleButton {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+    padding: 0;
+}
+
+.rightButton {
+    position: absolute;
+    margin-left: calc(100vw - 6.5rem);
+    margin-top: -4.5rem;
+}
+
+.backButton {
+    margin: 0;
+    text-align: left;
+    background-color: transparent;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .time {
@@ -134,4 +158,18 @@ form:invalid > button {
 
 .pastDriveForm {
     padding: 0.8rem;
+}
+
+.driveList {
+    list-style: none;
+    width: calc(100vw - 2rem);
+    margin: 0;
+    padding: 1rem;
+}
+
+.driveListItem {
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-radius: 12px;
 }

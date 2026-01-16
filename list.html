@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+        <script src="list.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div id="confirm" class="confirm" hidden>
+            <h2 class="centred mulish-normal">Delete this drive?</h2>
+            <p class="mulish-normal">
+                You won't be able to undo this, although you can always save a
+                past drive.
+            </p>
+            <button
+                onclick="document.getElementById('confirm').hidden = true"
+                class="button halfButton secondaryButton"
+            >
+                Cancel
+            </button>
+            <button onclick="deleteDrive()" class="button halfButton redButton">
+                Delete
+            </button>
+        </div>
+        <a href="index.html" class="mulish-normal button backButton"
+            ><span class="material-symbols-outlined">chevron_backward</span>
+            Back</a
+        >
+        <h1 class="centred mulish-normal">My drives</h1>
+        <button
+            onclick="
+                {
+                    alert('Exporting drives is not available yet.');
+                }
+            "
+            class="mulish-normal button primaryButton"
+            style="filter: grayscale()"
+        >
+            Export
+        </button>
+        <ul id="driveList" class="mulish-normal driveList"></ul>
+    </body>
+</html>
