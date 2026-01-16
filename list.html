@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <link rel="stylesheet" href="styles.css" />
@@ -18,9 +18,19 @@
     <body>
         <div id="confirm" class="confirm" hidden>
             <h2 class="centred mulish-normal">Delete this drive?</h2>
-            <p class="mulish-normal">You won't be able to undo this, although you can always save a past drive.</p>
-            <button class="button halfButton secondaryButton">Cancel</button>
-            <button class="button halfButton redButton">Delete</button>
+            <p class="mulish-normal">
+                You won't be able to undo this, although you can always save a
+                past drive.
+            </p>
+            <button
+                onclick="document.getElementById('confirm').hidden = true"
+                class="button halfButton secondaryButton"
+            >
+                Cancel
+            </button>
+            <button onclick="deleteDrive()" class="button halfButton redButton">
+                Delete
+            </button>
         </div>
         <a href="index.html" class="mulish-normal button backButton"
             ><span class="material-symbols-outlined">chevron_backward</span>
@@ -28,7 +38,11 @@
         >
         <h1 class="centred mulish-normal">My drives</h1>
         <button
-            onclick="{alert('Exporting drives is not available yet.')}"
+            onclick="
+                {
+                    alert('Exporting drives is not available yet.');
+                }
+            "
             class="mulish-normal button primaryButton"
             style="filter: grayscale()"
         >

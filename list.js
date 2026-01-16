@@ -4,11 +4,14 @@ function divideWithRemainder(number1, number2) {
     return [quotient, remainder];
 }
 
+let selectedDrive; // Create variable to keep track of which drive is selected
+
 function displayDrives() {
     // Format of drives:
     // [number of minutes, date and time, night true/false]
 
     const driveList = document.getElementById("driveList");
+    driveList.innerHTML = ""; // Clear the list area first
 
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
 
@@ -35,8 +38,9 @@ function displayDrives() {
             "button circleButton rightButton redButton"
         );
         deleteButton.onclick = () => {
+            selectedDrive = i;
             document.getElementById("confirm").hidden = false;
-        }
+        };
 
         const deleteIcon = document.createElement("span");
         deleteIcon.setAttribute("class", "material-symbols-outlined");
@@ -51,6 +55,24 @@ function displayDrives() {
         // Add the item to the list
         driveList.appendChild(item);
     }
+}
+
+function deleteDrive() {
+    // Get drives from localStorage
+    const drives = JSON.parse(localStorage.getItem("drives")) || [];
+
+    // Remove item from the list
+    drives.splice(selectedDrive, 1);
+
+    // Save new list to localStorage
+    const toSave = JSON.stringify(drives);
+    localStorage.setItem("drives", toSave);
+
+    // Update the display
+    displayDrives();
+
+    // Close the confirmation window
+    document.getElementById("confirm").hidden = true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
