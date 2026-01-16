@@ -36,6 +36,10 @@ form:invalid > button {
     font-style: normal;
 }
 
+.padding {
+    padding: 1rem;
+}
+
 .button {
     width: 80vw;
     margin: 0.7rem 10vw 0.7rem 10vw;
@@ -172,4 +176,13 @@ form:invalid > button {
     margin-bottom: 1rem;
     padding-left: 1rem;
     border-radius: 12px;
+}
+
+.confirm {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(9px);
+    height: calc(100vh - 2rem);
+    padding-top: 2rem;
 }
