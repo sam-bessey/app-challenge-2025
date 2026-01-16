@@ -22,11 +22,7 @@ function savePrevious(event) {
 
     // Get the current list of drives and then save the new drive
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
-    drives.push([
-        totalMinutes,
-        dateInput + timeInput,
-        isNight,
-    ]);
+    drives.push([totalMinutes, dateInput + timeInput, isNight]);
     const toSave = JSON.stringify(drives);
     localStorage.setItem("drives", toSave);
 

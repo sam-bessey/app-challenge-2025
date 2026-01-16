@@ -1,7 +1,7 @@
 function divideWithRemainder(number1, number2) {
-    let quotient = Math.floor(number1 / number2)
-    let remainder = number1 % number2
-    return [quotient, remainder]
+    let quotient = Math.floor(number1 / number2);
+    let remainder = number1 % number2;
+    return [quotient, remainder];
 }
 
 function getData() {
@@ -12,8 +12,8 @@ function getData() {
         // TODO: Show login page here
 
         // For now just reset all local storage. Once login page is finished, this will not be here
-        localStorage.setItem("drives", "[]")
-        localStorage.setItem("usedBefore", "yes")
+        localStorage.setItem("drives", "[]");
+        localStorage.setItem("usedBefore", "yes");
     } else {
         // Format of drives:
         // [number of minutes, date and time, night true/false]
@@ -29,13 +29,15 @@ function getData() {
 
             // If drive was at night, also add to the night minutes
             if (drives[i][2]) {
-                nightMinutes += drives[i][0]
+                nightMinutes += drives[i][0];
             }
         }
 
         // Update display
-        document.getElementById("totalHours").innerText = `${divideWithRemainder(minutes, 60)[0]}hr ${divideWithRemainder(minutes, 60)[1]}min`
-        document.getElementById("nightHours").innerText = `${divideWithRemainder(nightMinutes, 60)[0]}hr ${divideWithRemainder(nightMinutes, 60)[1]}min night`
+        document.getElementById("totalHours").innerText =
+            `${divideWithRemainder(minutes, 60)[0]}hr ${divideWithRemainder(minutes, 60)[1]}min`;
+        document.getElementById("nightHours").innerText =
+            `${divideWithRemainder(nightMinutes, 60)[0]}hr ${divideWithRemainder(nightMinutes, 60)[1]}min night`;
     }
 }
 
