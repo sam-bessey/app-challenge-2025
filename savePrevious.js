@@ -22,9 +22,9 @@ function savePrevious(event) {
 
     // Get the current list of drives and then save the new drive
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
-    drives.push([totalMinutes, dateInput + timeInput, isNight]);
-    const toSave = JSON.stringify(drives);
-    localStorage.setItem("drives", toSave);
+    drives.push([totalMinutes, dateInput + " " + timeInput, isNight]); // Format and save to drives list
+    const toSave = JSON.stringify(drives); // Format so its ready to be saved
+    localStorage.setItem("drives", toSave); // And save it!
 
     // Redirect to homepage
     window.location.href = "index.html";

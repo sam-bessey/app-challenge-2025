@@ -1,47 +1,62 @@
 // This is the code for the timer
 
-let timing = true;
+function divideWithRemainder(number1, number2) {
+    let quotient = Math.floor(number1 / number2);
+    let remainder = number1 % number2;
+    return [quotient, remainder];
+}
 
-let hours = 0;
-let minutes = 0;
-let seconds = 0;
+let timing = true;
 
 function timer() {
     if (timing) {
-        seconds++;
+        // Get start time and split it to variables (S stands for Start)
+        const startTime = sessionStorage.getItem("startTime");
+        const times = startTime.split(":");
+        const hourS = Number(times[0]);
+        const minuteS = Number(times[1]);
+        const secondS = Number(times[2]);
 
-        if (seconds == 60) {
-            minutes++;
-            seconds = 0;
-        }
+        // Get current time and split it to variables (N stands for Now)
+        const date = new Date();
+        const hourN = date.getHours();
+        const minuteN = date.getMinutes();
+        const secondN = date.getSeconds();
 
-        if (minutes == 60) {
-            hours++;
-            minutes = 0;
-            seconds = 0;
-        }
+        // Get difference between start and current
+        let hourD = hourN - hourS;
+        let minuteD = minuteN - minuteS;
+        let secondD = secondN - secondS;
+
+        // Reformat it to use totalSeconds
+        let totalSeconds = hourD * 360 + minuteD * 60 + secondD;
+        hourD = divideWithRemainder(totalSeconds, 360)[0];
+        minuteD = divideWithRemainder(
+            divideWithRemainder(totalSeconds, 360)[1],
+            60,
+        )[0];
+        secondD = divideWithRemainder(
+            divideWithRemainder(totalSeconds, 360)[1],
+            60,
+        )[1];
 
         // Format it to display, F stands for formatted
-        let hourF = hours;
-        let minuteF = minutes;
-        let secondF = seconds;
-
-        if (hourF < 10) {
-            hourF = "0" + hourF;
+        if (hourD < 10) {
+            hourD = "0" + hourD;
         }
 
-        if (minuteF < 10) {
-            minuteF = "0" + minuteF;
+        if (minuteD < 10) {
+            minuteD = "0" + minuteD;
         }
 
-        if (secondF < 10) {
-            secondF = "0" + secondF;
+        if (secondD < 10) {
+            secondD = "0" + secondD;
         }
 
         // Display new time
-        document.getElementById("hours").innerText = hourF;
-        document.getElementById("minutes").innerText = minuteF;
-        document.getElementById("seconds").innerText = secondF;
+        document.getElementById("hours").innerText = hourD;
+        document.getElementById("minutes").innerText = minuteD;
+        document.getElementById("seconds").innerText = secondD;
 
         // Wait one second before running it again
         setTimeout(timer, 1000);
@@ -83,7 +98,7 @@ function saveDrive() {
 
     // Is it night?
     let isNight;
-    if (document.getElementById("dayAndNight").value == "Day") {
+    if (document.getElementById("dayAndNight").value === "Day") {
         isNight = false;
     } else {
         isNight = true;
@@ -100,5 +115,18 @@ function saveDrive() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // check if start time has been set yet, and if not, set it
+    if (sessionStorage.getItem("startTime") === null) {
+        console.log("Drive not started yet");
+
+        // Get the current time and save it to sessionStorage
+        const date = new Date();
+        sessionStorage.setItem(
+            "startTime",
+            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+        );
+    }
+
+    // Run timer
     timer();
 });
