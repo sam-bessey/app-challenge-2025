@@ -1,12 +1,10 @@
 // This is the code for the timer
-
-function divideWithRemainder(number1, number2) {
-    let quotient = Math.floor(number1 / number2);
-    let remainder = number1 % number2;
-    return [quotient, remainder];
-}
+import {divideWithRemainder, updateDarkMode} from './functions.js';
 
 let timing = true;
+let hourD = 0;
+let minuteD = 0;
+let secondD = 0;
 
 function timer() {
     if (timing) {
@@ -24,19 +22,20 @@ function timer() {
         const secondN = date.getSeconds();
 
         // Get difference between start and current
-        let hourD = hourN - hourS;
-        let minuteD = minuteN - minuteS;
-        let secondD = secondN - secondS;
+        hourD = hourN - hourS;
+        minuteD = minuteN - minuteS;
+        secondD = secondN - secondS;
 
         // Reformat it to use totalSeconds
-        let totalSeconds = hourD * 360 + minuteD * 60 + secondD;
-        hourD = divideWithRemainder(totalSeconds, 360)[0];
+        let totalSeconds = hourD * 3600 + minuteD * 60 + secondD;
+        console.log("total seconds", totalSeconds);
+        hourD = divideWithRemainder(totalSeconds, 3600)[0];
         minuteD = divideWithRemainder(
-            divideWithRemainder(totalSeconds, 360)[1],
+            divideWithRemainder(totalSeconds, 3600)[1],
             60,
         )[0];
         secondD = divideWithRemainder(
-            divideWithRemainder(totalSeconds, 360)[1],
+            divideWithRemainder(totalSeconds, 3600)[1],
             60,
         )[1];
 
@@ -80,7 +79,7 @@ function saveDrive() {
     document.getElementById("saveButton").style.filter = "grayscale()";
 
     // Find number of minutes driven
-    const minutesToSave = hours * 60 + minutes;
+    const minutesToSave = hourD * 60 + minuteD;
 
     // Get date and format it in a user-friendly way
     // Example formatted date: 1/4/2025 14:45
@@ -110,11 +109,17 @@ function saveDrive() {
     const toSave = JSON.stringify(drives);
     localStorage.setItem("drives", toSave);
 
+    // Clear the start time from session storage
+    sessionStorage.removeItem("startTime");
+
     // Redirect to homepage once saving finishes
     window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Check whether to use dark mode
+    updateDarkMode();
+
     // check if start time has been set yet, and if not, set it
     if (sessionStorage.getItem("startTime") === null) {
         console.log("Drive not started yet");
@@ -126,6 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
             date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
         );
     }
+
+    // Add event listeners
+    document.getElementById("doneButton").addEventListener("click", stopTimer);
+    document.getElementById("deleteButton").addEventListener("click", () => {
+        sessionStorage.removeItem('startTime');
+        window.location.href = 'index.html'
+    })
+    document.getElementById("saveButton").addEventListener("click", saveDrive);
 
     // Run timer
     timer();

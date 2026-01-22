@@ -1,8 +1,4 @@
-function divideWithRemainder(number1, number2) {
-    let quotient = Math.floor(number1 / number2);
-    let remainder = number1 % number2;
-    return [quotient, remainder];
-}
+import {divideWithRemainder, updateDarkMode} from './functions.js';
 
 function getData() {
     // Gets saved data and updates homepage with it
@@ -42,6 +38,9 @@ function getData() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Decide whether or not to use dark mode
+    updateDarkMode();
+
     // Get data after page loads
     getData();
 });

@@ -12,11 +12,11 @@
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
             rel="stylesheet"
         />
-        <script src="savePrevious.js"></script>
+        <script src="savePrevious.js" type="module"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="darkreader-lock">
     </head>
-    <body>
+    <body id="body">
         <a href="index.html" class="mulish-normal button backButton"
             ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
@@ -47,7 +47,7 @@
             </select>
             <button
                 type="submit"
-                onclick="savePrevious(event)"
+                id="submit"
                 class="mulish-normal button primaryButton"
             >
                 Save

@@ -8,11 +8,11 @@
             href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
             rel="stylesheet"
         />
-        <script src="timer.js"></script>
+        <script src="timer.js" type="module"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="darkreader-lock">
     </head>
-    <body>
+    <body id="body">
         <h1 class="mulish-light time">
             <span id="hours">00</span>:<span id="minutes">00</span
             ><span style="font-size: 3rem">:<span id="seconds">00</span></span>
@@ -25,7 +25,6 @@
 
         <button
             id="doneButton"
-            onclick="stopTimer()"
             class="mulish-normal button primaryButton"
         >
             Done
@@ -33,12 +32,11 @@
 
         <div id="saveUI" hidden>
             <a
-                onclick="{sessionStorage.removeItem('startTime'); window.location.href = 'index.html'}"
+                id="deleteButton"
                 class="mulish-normal button redButton halfButton"
                 >Delete</a
             >
             <button
-                onclick="saveDrive()"
                 id="saveButton"
                 class="mulish-normal button primaryButton halfButton"
             >

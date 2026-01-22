@@ -1,3 +1,5 @@
+import {updateDarkMode} from './functions.js';
+
 function savePrevious(event) {
     // Format of drives:
     // [number of minutes, date and time, night true/false]
@@ -14,7 +16,7 @@ function savePrevious(event) {
 
     // Is it night?
     let isNight;
-    if (document.getElementById("dayAndNight").value == "Day") {
+    if (document.getElementById("dayAndNight").value === "Day") {
         isNight = false;
     } else {
         isNight = true;
@@ -23,9 +25,19 @@ function savePrevious(event) {
     // Get the current list of drives and then save the new drive
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
     drives.push([totalMinutes, dateInput + " " + timeInput, isNight]); // Format and save to drives list
-    const toSave = JSON.stringify(drives); // Format so its ready to be saved
+    const toSave = JSON.stringify(drives); // Format so it's ready to be saved
     localStorage.setItem("drives", toSave); // And save it!
 
     // Redirect to homepage
     window.location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Use dark mode if needed
+    updateDarkMode();
+
+    // Add event listeners for buttons
+    document.getElementById("submit").addEventListener("click", () => {
+        savePrevious(event);
+    });
+});

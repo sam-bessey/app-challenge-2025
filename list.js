@@ -1,8 +1,4 @@
-function divideWithRemainder(number1, number2) {
-    let quotient = Math.floor(number1 / number2);
-    let remainder = number1 % number2;
-    return [quotient, remainder];
-}
+import {divideWithRemainder, updateDarkMode} from "./functions.js";
 
 let selectedDrive; // Create variable to keep track of which drive is selected
 
@@ -24,23 +20,18 @@ function displayDrives() {
         date.innerText = drives[i][1];
 
         const time = document.createElement("p");
-        time.innerText = `${divideWithRemainder(drives[i][0], 60)[0]}hr ${
-            divideWithRemainder(drives[i][0], 60)[1]
-        }min`;
+        time.innerText = `${divideWithRemainder(drives[i][0], 60)[0]}hr ${divideWithRemainder(drives[i][0], 60)[1]}min`;
 
         if (drives[i][2]) {
             time.innerText = time.innerText + " Night";
         }
 
         const deleteButton = document.createElement("button");
-        deleteButton.setAttribute(
-            "class",
-            "button circleButton rightButton redButton"
-        );
-        deleteButton.onclick = () => {
+        deleteButton.setAttribute("class", "button circleButton rightButton redButton");
+        deleteButton.addEventListener("click", () => {
             selectedDrive = i;
             document.getElementById("confirm").hidden = false;
-        };
+        });
 
         const deleteIcon = document.createElement("span");
         deleteIcon.setAttribute("class", "material-symbols-outlined");
@@ -76,5 +67,18 @@ function deleteDrive() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Decide whether or not to use dark mode
+    updateDarkMode();
+
+    // Add event listeners for buttons
+    document.getElementById("cancelConfirm").addEventListener("click", () => {
+        document.getElementById('confirm').hidden = true
+    });
+    document.getElementById("deleteButton").addEventListener("click", deleteDrive)
+    document.getElementById("exportButton").addEventListener("click", () => {
+        alert('Exporting drives is not available yet.')
+    })
+
+    // Display list of saved drives
     displayDrives();
 });
