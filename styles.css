@@ -1,6 +1,41 @@
+:root {
+    --backgroundColor: thistle;
+    --primaryBackground: linear-gradient(
+            25deg,
+            rgb(148, 207, 238),
+            rgb(185, 114, 201)
+    );
+    --secondaryBackground: rgb(189, 189, 250);
+    --redBackground: linear-gradient(25deg,
+    rgb(249, 181, 181),
+    rgb(143, 15, 15)
+    );
+    --textColor: black;
+}
+
+.darkMode {
+    --backgroundColor: #220022;
+    --primaryBackground: linear-gradient(
+            25deg,
+            rgb(35, 98, 131),
+            rgb(113, 6, 136)
+    );
+    --secondaryBackground: rgb(70, 70, 117);
+    --redBackground: linear-gradient(25deg,
+    rgb(152, 106, 106),
+    rgb(83, 3, 3)
+    );
+    --textColor: rgb(207, 207, 207);
+}
+
 body {
-    background-color: thistle;
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
     margin: 0;
+}
+
+input {
+    color: var(--textColor);
 }
 
 input:invalid {
@@ -48,30 +83,22 @@ form:invalid > button {
     display: inline-block;
     border-radius: 15px;
     text-decoration: none;
-    color: black;
+    color: var(--textColor);
     border: 0;
     font-size: 1rem;
     box-sizing: border-box;
 }
 
 .primaryButton {
-    background-image: linear-gradient(
-        45deg,
-        rgb(148, 207, 238),
-        rgb(185, 114, 201)
-    );
+    background-image: var(--primaryBackground);
 }
 
 .secondaryButton {
-    background-color: rgb(189, 189, 250);
+    background-color: var(--secondaryBackground);
 }
 
 .redButton {
-    background-image: linear-gradient(
-        45deg,
-        rgb(249, 181, 181),
-        rgb(143, 15, 15)
-    );
+    background-image: var(--redBackground);
 }
 
 .halfButton {
@@ -115,28 +142,30 @@ form:invalid > button {
     background-color: transparent;
     border: 0;
     margin: 0 calc(50vw - 5rem - 1rem) 2rem calc(50vw - 5rem - 1rem);
+    color: var(--textColor);
 }
 
 .smallSelect {
     background-color: transparent;
-    border: 0;
     width: 5rem;
     padding: 0.5rem;
     margin: 0.5rem;
-    border: 1px solid black;
+    border: 1px solid var(--textColor);
     border-radius: 12px;
     transition: 0.2s;
+    color: var(--textColor);
 }
 
 .smallSelect:focus {
     background-color: white;
+    color: black;
 }
 
 .number {
     width: 3.5rem;
     padding: 0.5rem;
     margin: 0.5rem;
-    border: 1px solid black;
+    border: 1px solid var(--textColor);
     background-color: transparent;
     border-radius: 12px;
     transition: 0.2s;
@@ -144,6 +173,7 @@ form:invalid > button {
 
 .number:focus {
     background-color: white;
+    color: black;
 }
 
 .dateAndTime {
@@ -151,13 +181,14 @@ form:invalid > button {
     padding: 0.5rem;
     margin: 0.5rem;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid var(--textColor);
     border-radius: 12px;
     transition: 0.2s;
 }
 
 .dateAndTime:focus {
     background-color: white;
+    color: black;
 }
 
 .pastDriveForm {
@@ -172,7 +203,7 @@ form:invalid > button {
 }
 
 .driveListItem {
-    border: 1px solid black;
+    border: 1px solid var(--textColor);
     margin-bottom: 1rem;
     padding-left: 1rem;
     border-radius: 12px;
