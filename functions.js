@@ -28,5 +28,7 @@ export function updateDarkMode() {
     // set dark mode if needed
     if (darkMode) {
         document.getElementById("body").classList.add("darkMode");
+    } else {
+        document.getElementById("body").classList.remove("darkMode");
     }
 }

@@ -18,7 +18,6 @@ function timer() {
         const timeDifference = now - startTime;
 
         // Reformat it to use totalSeconds
-        console.log("total milliseconds", timeDifference);
         const totalSeconds = Math.floor(timeDifference / 1000);
         hours = divideWithRemainder(totalSeconds, 3600)[0];
         minutes = divideWithRemainder(
@@ -70,7 +69,7 @@ function saveDrive() {
     document.getElementById("saveButton").style.filter = "grayscale()";
 
     // Find number of minutes driven
-    const minutesToSave = Number(hours) * 60 + Number(minutes);
+    const minutesToSave = Number(hours * 60 + minutes);
 
     // Get date and format it in a user-friendly way
     // Example formatted date: 1/4/2025 14:45
@@ -130,7 +129,23 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = 'index.html'
     })
     document.getElementById("saveButton").addEventListener("click", saveDrive);
+    document.getElementById("dayAndNight").addEventListener("change", () => {
+        // Set session storage to the new value
+        if (document.getElementById("dayAndNight").value === "Day") {
+            sessionStorage.setItem("darkMode", "false");
+        } else {
+            sessionStorage.setItem("darkMode", "true");
+        }
+
+        // Update dark mode
+        updateDarkMode();
+    })
 
     // Run timer
     timer();
+
+    // If it's dark mode, set the dropdown to night
+    if (document.getElementById("body").classList.contains("darkMode")) {
+        document.getElementById("dayAndNight").value = "Night";
+    }
 });
