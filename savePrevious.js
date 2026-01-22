@@ -22,9 +22,13 @@ function savePrevious(event) {
         isNight = true;
     }
 
+    // Format the date correctly
+    let formattedDate = new Date(dateInput);
+    formattedDate = formattedDate.toLocaleDateString("en-US");
+
     // Get the current list of drives and then save the new drive
     const drives = JSON.parse(localStorage.getItem("drives")) || []; // Get list of all drives
-    drives.push([totalMinutes, dateInput + " " + timeInput, isNight]); // Format and save to drives list
+    drives.push([totalMinutes, formattedDate + " " + timeInput, isNight]); // Format and save to drives list
     const toSave = JSON.stringify(drives); // Format so it's ready to be saved
     localStorage.setItem("drives", toSave); // And save it!
 

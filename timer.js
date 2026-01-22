@@ -2,60 +2,51 @@
 import {divideWithRemainder, updateDarkMode} from './functions.js';
 
 let timing = true;
-let hourD = 0;
-let minuteD = 0;
-let secondD = 0;
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
 
 function timer() {
     if (timing) {
-        // Get start time and split it to variables (S stands for Start)
-        const startTime = sessionStorage.getItem("startTime");
-        const times = startTime.split(":");
-        const hourS = Number(times[0]);
-        const minuteS = Number(times[1]);
-        const secondS = Number(times[2]);
+        // Get start time
+        const startTime = JSON.parse(sessionStorage.getItem("startTime"));
 
-        // Get current time and split it to variables (N stands for Now)
-        const date = new Date();
-        const hourN = date.getHours();
-        const minuteN = date.getMinutes();
-        const secondN = date.getSeconds();
+        // Get current time
+        const now = Date.now();
 
         // Get difference between start and current
-        hourD = hourN - hourS;
-        minuteD = minuteN - minuteS;
-        secondD = secondN - secondS;
+        const timeDifference = now - startTime;
 
         // Reformat it to use totalSeconds
-        let totalSeconds = hourD * 3600 + minuteD * 60 + secondD;
-        console.log("total seconds", totalSeconds);
-        hourD = divideWithRemainder(totalSeconds, 3600)[0];
-        minuteD = divideWithRemainder(
+        console.log("total milliseconds", timeDifference);
+        const totalSeconds = Math.floor(timeDifference / 1000);
+        hours = divideWithRemainder(totalSeconds, 3600)[0];
+        minutes = divideWithRemainder(
             divideWithRemainder(totalSeconds, 3600)[1],
             60,
         )[0];
-        secondD = divideWithRemainder(
+        seconds = divideWithRemainder(
             divideWithRemainder(totalSeconds, 3600)[1],
             60,
         )[1];
 
-        // Format it to display, F stands for formatted
-        if (hourD < 10) {
-            hourD = "0" + hourD;
+        // Format it to display
+        if (hours < 10) {
+            hours = "0" + hours;
         }
 
-        if (minuteD < 10) {
-            minuteD = "0" + minuteD;
+        if (minutes < 10) {
+            minutes = "0" + minutes;
         }
 
-        if (secondD < 10) {
-            secondD = "0" + secondD;
+        if (seconds < 10) {
+            seconds = "0" + seconds;
         }
 
         // Display new time
-        document.getElementById("hours").innerText = hourD;
-        document.getElementById("minutes").innerText = minuteD;
-        document.getElementById("seconds").innerText = secondD;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
 
         // Wait one second before running it again
         setTimeout(timer, 1000);
@@ -79,7 +70,7 @@ function saveDrive() {
     document.getElementById("saveButton").style.filter = "grayscale()";
 
     // Find number of minutes driven
-    const minutesToSave = hourD * 60 + minuteD;
+    const minutesToSave = Number(hours) * 60 + Number(minutes);
 
     // Get date and format it in a user-friendly way
     // Example formatted date: 1/4/2025 14:45
@@ -128,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const date = new Date();
         sessionStorage.setItem(
             "startTime",
-            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+            JSON.stringify(Date.now())
         );
     }
 
