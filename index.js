@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update the gradient
         nightProgressBar.style.background = `conic-gradient(
-        var(--nightProgressColor) ${nightProgress * 3.6}deg, 
-        var(--backgroundColor) ${nightProgress * 3.6}deg
-          )`;
+            var(--nightProgressColor) ${nightProgress * 3.6}deg, 
+            var(--backgroundColor) ${nightProgress * 3.6}deg
+            )`;
 
         // Check if animation can finish
         if (nightProgress >= nightEndValue) {
