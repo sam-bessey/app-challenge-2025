@@ -232,8 +232,7 @@ form:invalid > button {
 .totalHours {
     width: 16rem;
     height: 16rem;
-    margin-left: calc(50vw - 8rem);
-    margin-top: 2rem;
+    margin: 2rem calc(50vw - 8rem) 2rem calc(50vw - 8rem);
 }
 
 .nightHours {
