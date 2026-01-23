@@ -11,6 +11,8 @@
     rgb(143, 15, 15)
     );
     --textColor: black;
+    --totalProgressColor: rgb(156, 156, 242);
+    --nightProgressColor: #333030;
 }
 
 .darkMode {
@@ -26,6 +28,8 @@
     rgb(83, 3, 3)
     );
     --textColor: rgb(207, 207, 207);
+    --totalProgressColor: rgb(132, 132, 200);
+    --nightProgressColor: #575252;
 }
 
 body {
@@ -216,4 +220,29 @@ form:invalid > button {
     backdrop-filter: blur(9px);
     height: calc(100vh - 2rem);
     padding-top: 2rem;
+}
+
+.progress {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totalHours {
+    width: 10rem;
+    height: 10rem;
+    margin-left: calc(50vw - 5rem);
+    margin-top: 2rem;
+}
+
+.nightHours {
+    width: 8rem;
+    height: 8rem;
+}
+
+.innerProgress {
+    background: var(--backgroundColor);
+    width: 6rem;
+    height: 6rem;
 }
