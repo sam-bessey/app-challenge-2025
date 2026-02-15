@@ -75,9 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('confirm').hidden = true
     });
     document.getElementById("deleteButton").addEventListener("click", deleteDrive)
-    document.getElementById("exportButton").addEventListener("click", () => {
-        alert('Exporting drives is not available yet.')
-    })
 
     // Display list of saved drives
     displayDrives();
