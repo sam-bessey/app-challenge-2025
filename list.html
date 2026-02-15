@@ -1,49 +1,49 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="styles.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com" rel="preconnect"/>
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
         <link
-            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-            rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+                rel="stylesheet"
         />
         <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete"
-            rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete"
+                rel="stylesheet"
         />
         <script src="list.js" type="module"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         <meta name="darkreader-lock">
     </head>
     <body id="body">
-        <div id="confirm" class="confirm" hidden>
+        <div class="confirm" hidden id="confirm">
             <h2 class="centred mulish-normal">Delete this drive?</h2>
             <p class="mulish-normal padding">
                 You won't be able to undo this, although you can always save it
                 as a past drive.
             </p>
             <button
-                id="cancelConfirm"
-                class="button halfButton secondaryButton"
+                    class="button halfButton secondaryButton"
+                    id="cancelConfirm"
             >
                 Cancel
             </button>
-            <button id="deleteButton" class="button halfButton redButton">
+            <button class="button halfButton redButton" id="deleteButton">
                 Delete
             </button>
         </div>
-        <a href="index.html" class="mulish-normal button backButton"
-            ><span class="material-symbols-outlined">chevron_backward</span>
+        <a class="mulish-normal button backButton" href="index.html"
+        ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
         >
         <h1 class="centred mulish-normal">My drives</h1>
         <a
-            class="mulish-normal button primaryButton"
-            href="export.html"
+                class="mulish-normal button primaryButton"
+                href="export.html"
         >
             Export
         </a>
-        <ul id="driveList" class="mulish-normal driveList"></ul>
+        <ul class="mulish-normal driveList" id="driveList"></ul>
     </body>
 </html>
