@@ -1,32 +1,31 @@
 :root {
     --backgroundColor: thistle;
     --primaryBackground: linear-gradient(
-            25deg,
-            rgb(148, 207, 238),
-            rgb(185, 114, 201)
+        25deg,
+        rgb(148, 207, 238),
+        rgb(185, 114, 201)
     );
     --secondaryBackground: rgb(189, 189, 250);
-    --redBackground: linear-gradient(25deg,
-    rgb(249, 181, 181),
-    rgb(143, 15, 15)
+    --redBackground: linear-gradient(
+        25deg,
+        rgb(249, 181, 181),
+        rgb(143, 15, 15)
     );
     --textColor: black;
     --totalProgressColor: rgb(156, 156, 242);
     --nightProgressColor: #333030;
+    --totalProgressDarker: rgb(64, 64, 121);
 }
 
 .darkMode {
     --backgroundColor: #220022;
     --primaryBackground: linear-gradient(
-            25deg,
-            rgb(35, 98, 131),
-            rgb(113, 6, 136)
+        25deg,
+        rgb(35, 98, 131),
+        rgb(113, 6, 136)
     );
     --secondaryBackground: rgb(70, 70, 117);
-    --redBackground: linear-gradient(25deg,
-    rgb(152, 106, 106),
-    rgb(83, 3, 3)
-    );
+    --redBackground: linear-gradient(25deg, rgb(152, 106, 106), rgb(83, 3, 3));
     --textColor: rgb(207, 207, 207);
     --totalProgressColor: rgb(132, 132, 200);
     --nightProgressColor: #575252;
