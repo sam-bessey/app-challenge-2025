@@ -12,7 +12,7 @@
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete"
                 rel="stylesheet"
         />
-        <script src="list.js" type="module"></script>
+        <script src="import.js" type="module"></script>
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         <meta name="darkreader-lock">
     </head>
@@ -21,6 +21,9 @@
         ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
         >
-        <h1 class="centred mulish-normal">My drives</h1>
+        <h1 class="centred mulish-normal">Import Drives</h1>
+        <p class="mulish-normal padding centred">You can use a CSV file to import drives to this device.</p>
+        <input accept=".csv" id="fileSelect" type="file" hidden/>
+        <button class="mulish-normal button primaryButton" id="fileSelectButton">Select CSV File</button>
     </body>
 </html>

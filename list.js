@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('confirm').hidden = true
     });
     document.getElementById("deleteButton").addEventListener("click", deleteDrive)
-    document.getElementById("importButton").addEventListener("click", importDrive);
 
     // Display list of saved drives
     displayDrives();
