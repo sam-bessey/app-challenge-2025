@@ -48,10 +48,6 @@ function displayDrives() {
     }
 }
 
-function importDrive() {
-
-}
-
 function deleteDrive() {
     // Get drives from localStorage
     const drives = JSON.parse(localStorage.getItem("drives")) || [];
