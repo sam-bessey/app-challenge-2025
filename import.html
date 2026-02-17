@@ -22,8 +22,16 @@
             Back</a
         >
         <h1 class="centred mulish-normal">Import Drives</h1>
-        <p class="mulish-normal padding centred">You can use a CSV file to import drives to this device.</p>
-        <input accept=".csv" id="fileSelect" type="file" hidden/>
-        <button class="mulish-normal button primaryButton" id="fileSelectButton">Select CSV File</button>
+        <div id="upload">
+            <p class="mulish-normal padding centred">You can use a CSV file to import drives to this device.</p>
+            <input accept=".csv" hidden id="fileSelect" type="file"/>
+            <button class="mulish-normal button primaryButton" id="fileSelectButton">Select CSV File</button>
+        </div>
+        <div id="controls">
+            <p class="mulish-normal padding centred">Would you like to replace your current drives, or keep your current
+                drives and the new drives?</p>
+            <button class="mulish-normal button secondaryButton" id="replaceButton">Replace drives</button>
+            <button class="mulish-normal button secondaryButton" id="keepButton">Keep both sets of drives</button>
+        </div>
     </body>
 </html>
