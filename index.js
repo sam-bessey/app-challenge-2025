@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 5);
     const nightProgressInterval = setInterval(() => {
-        nightProgress += 0.5;
+        nightProgress += 0.15;
 
         // Update the gradient
         nightProgressBar.style.background = `conic-gradient(
