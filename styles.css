@@ -1,15 +1,15 @@
 :root {
     --backgroundColor: thistle;
     --primaryBackground: linear-gradient(
-        25deg,
-        rgb(148, 207, 238),
-        rgb(185, 114, 201)
+            25deg,
+            rgb(148, 207, 238),
+            rgb(185, 114, 201)
     );
     --secondaryBackground: rgb(189, 189, 250);
     --redBackground: linear-gradient(
-        25deg,
-        rgb(249, 181, 181),
-        rgb(143, 15, 15)
+            25deg,
+            rgb(249, 181, 181),
+            rgb(143, 15, 15)
     );
     --textColor: black;
     --totalProgressColor: rgb(156, 156, 242);
@@ -20,9 +20,9 @@
 .darkMode {
     --backgroundColor: #220022;
     --primaryBackground: linear-gradient(
-        25deg,
-        rgb(35, 98, 131),
-        rgb(113, 6, 136)
+            25deg,
+            rgb(35, 98, 131),
+            rgb(113, 6, 136)
     );
     --secondaryBackground: rgb(70, 70, 117);
     --redBackground: linear-gradient(25deg, rgb(152, 106, 106), rgb(83, 3, 3));
@@ -80,8 +80,8 @@ form:invalid > button {
 }
 
 .button {
-    width: 80vw;
-    margin: 0.7rem 10vw 0.7rem 10vw;
+    width: 80%;
+    margin: 0.7rem 10% 0.7rem 10%;
     padding: 1rem;
     text-align: center;
     display: inline-block;
@@ -106,9 +106,9 @@ form:invalid > button {
 }
 
 .halfButton {
-    width: 45vw;
-    margin-left: calc(2.5vw - 1px);
-    margin-right: calc(2.5vw - 1px);
+    width: 45%;
+    margin-left: calc(2.5% - 1px);
+    margin-right: calc(2.5% - 1px);
 }
 
 .circleButton {
@@ -121,7 +121,7 @@ form:invalid > button {
 
 .rightButton {
     position: absolute;
-    margin-left: calc(100vw - 6.5rem);
+    margin-left: calc(100% - 6.5rem);
     margin-top: -4.5rem;
 }
 
@@ -144,8 +144,9 @@ form:invalid > button {
     padding: 0.5rem 1rem 10px 0.5rem;
     width: 10rem;
     background-color: transparent;
-    border: 0;
-    margin: 0 calc(50vw - 5rem - 1rem) 2rem calc(50vw - 5rem - 1rem);
+    border: 1px solid var(--textColor);
+    border-radius: 12px;
+    margin: 0 calc(50% - 5rem) 2rem calc(50% - 5rem);
     color: var(--textColor);
 }
 
@@ -201,7 +202,7 @@ form:invalid > button {
 
 .driveList {
     list-style: none;
-    width: calc(100vw - 2rem);
+    width: calc(100% - 2rem);
     margin: 0;
     padding: 1rem;
 }
@@ -232,7 +233,7 @@ form:invalid > button {
 .totalHours {
     width: 16rem;
     height: 16rem;
-    margin: 2rem calc(50vw - 8rem) 2rem calc(50vw - 8rem);
+    margin: 2rem calc(50% - 8rem) 2rem calc(50% - 8rem);
 }
 
 .nightHours {
