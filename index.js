@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let progress = 0;
     let endValue = getData()[1] / 4200 * 100;
 
-    const nightProgressBar = document.getElementById("nightProgress")
+    const nightProgressBar = document.getElementById("nightProgress");
     let nightProgress = 0;
     let nightEndValue = getData()[2] / 600 * 100;
 
