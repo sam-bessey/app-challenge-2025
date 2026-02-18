@@ -69,7 +69,7 @@ function saveDrive() {
     document.getElementById("saveButton").style.filter = "grayscale()";
 
     // Find number of minutes driven
-    const minutesToSave = Number(hours * 60 + minutes);
+    const minutesToSave = Number(Number(hours) * 60 + Number(minutes));
 
     // Get date and format it in a user-friendly way
     // Example formatted date: 1/4/2025 14:45
@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("doneButton").addEventListener("click", stopTimer);
     document.getElementById("deleteButton").addEventListener("click", () => {
         sessionStorage.removeItem('startTime');
-        window.location.href = 'index.html'
-    })
+        window.location.href = 'index.html';
+    });
     document.getElementById("saveButton").addEventListener("click", saveDrive);
     document.getElementById("dayAndNight").addEventListener("change", () => {
         // Set session storage to the new value
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update dark mode
         updateDarkMode();
-    })
+    });
 
     // Run timer
     timer();
