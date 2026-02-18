@@ -72,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listeners for buttons
     document.getElementById("cancelConfirm").addEventListener("click", () => {
-        document.getElementById('confirm').hidden = true
+        document.getElementById('confirm').hidden = true;
     });
-    document.getElementById("deleteButton").addEventListener("click", deleteDrive)
+    document.getElementById("deleteButton").addEventListener("click", deleteDrive);
 
     // Display list of saved drives
     displayDrives();

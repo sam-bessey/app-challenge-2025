@@ -3,7 +3,7 @@ import {divideWithRemainder, updateDarkMode} from './functions.js';
 function exportCsv() {
     // Get drives from localStorage
     const drives = JSON.parse(localStorage.getItem("drives")) || [];
-    let formattedDrives = []
+    let formattedDrives = [];
 
     // Format drives to save to CSV
     for (let i = 0; i < drives.length; i++) {
