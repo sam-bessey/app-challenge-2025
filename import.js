@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("drives", toSave); // And save it!
 
         // Redirect to my drives page so people can see the new drives
-        window.location.href = "index.html";
+        window.location.href = "list.html";
     });
 
     document.getElementById("keepButton").addEventListener("click", () => {
@@ -86,6 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("drives", toSave); // And save it!
 
         // Redirect to my drives page so people can see the new drives
-        window.location.href = "index.html";
+        window.location.href = "list.html";
     });
 });
