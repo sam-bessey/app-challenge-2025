@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Replace drive list with new drives
         const toSave = JSON.stringify(formattedDrives); // Format so it's ready to be saved
         localStorage.setItem("drives", toSave); // And save it!
+
+        // Redirect to my drives page so people can see the new drives
+        window.location.href = "index.html";
     });
 
     document.getElementById("keepButton").addEventListener("click", () => {
@@ -81,5 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const toSave = JSON.stringify(drives); // Format so it's ready to be saved
         localStorage.setItem("drives", toSave); // And save it!
+
+        // Redirect to my drives page so people can see the new drives
+        window.location.href = "index.html";
     });
 });
