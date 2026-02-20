@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Drive not started yet");
 
         // Get the current time and save it to sessionStorage
-        const date = new Date();
         sessionStorage.setItem(
             "startTime",
             JSON.stringify(Date.now())
