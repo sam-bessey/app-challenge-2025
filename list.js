@@ -1,4 +1,4 @@
-import {divideWithRemainder, updateDarkMode} from "./functions.js";
+import {divideWithRemainder, updateTheme} from "./functions.js";
 
 let selectedDrive; // Create variable to keep track of which drive is selected
 
@@ -68,7 +68,7 @@ function deleteDrive() {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Decide whether or not to use dark mode
-    updateDarkMode();
+    updateTheme();
 
     // Add event listeners for buttons
     document.getElementById("cancelConfirm").addEventListener("click", () => {

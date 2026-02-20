@@ -1,4 +1,4 @@
-import {divideWithRemainder, getData, updateDarkMode} from './functions.js';
+import {divideWithRemainder, getData, updateTheme} from './functions.js';
 
 function updateHomepage() {
     // Gets saved data and updates homepage with it
@@ -11,7 +11,7 @@ function updateHomepage() {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Decide whether or not to use dark mode
-    updateDarkMode();
+    updateTheme();
 
     // Get data after page loads
     updateHomepage();

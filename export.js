@@ -1,4 +1,4 @@
-import {divideWithRemainder, updateDarkMode} from './functions.js';
+import {divideWithRemainder, updateTheme} from './functions.js';
 
 function exportCsv() {
     // Get drives from localStorage
@@ -46,7 +46,7 @@ function exportCsv() {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Check whether to use dark mode
-    updateDarkMode();
+    updateTheme();
 
     // Add event listeners
     document.getElementById("exportCsv").addEventListener("click", exportCsv);

@@ -6,7 +6,7 @@ export function divideWithRemainder(number1, number2) {
     return [quotient, remainder];
 }
 
-export function updateDarkMode() {
+export function updateTheme() {
     // Use dark mode (or not) depending on time of day
 
     // Check sessionStorage for dark mode
