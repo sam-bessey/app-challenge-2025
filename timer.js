@@ -54,7 +54,6 @@ function timer() {
 
 function stopTimer() {
     // Stops timer and shows UI for saving
-
     timing = false;
     document.getElementById("saveUI").hidden = false;
     document.getElementById("doneButton").setAttribute("hidden", "");
