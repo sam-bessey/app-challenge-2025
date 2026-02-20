@@ -15,7 +15,7 @@ function savePrevious(event) {
     const totalMinutes = Number(hoursInput) * 60 + Number(minutesInput);
 
     // Check if the form is valid
-    if (dateInput === "" || timeInput === "" || (hoursInput === 0 && minutesInput === 0)) {
+    if (dateInput === "" || timeInput === "" || totalMinutes === 0) {
         console.log("Form is invalid!!!");
         alert("You are missing some information. Make sure everything is filled out correctly, then try again.");
         return;
