@@ -63,6 +63,11 @@ function displayDrives() {
             document.getElementById("time").value = drives[i][1].split(" ")[1];
             document.getElementById("hours").value = divideWithRemainder(drives[i][0], 60)[0];
             document.getElementById("minutes").value = divideWithRemainder(drives[i][0], 60)[1];
+            if (drives[i][2]) {
+                document.getElementById("dayAndNight").value = "Day";
+            } else {
+                document.getElementById("dayAndNight").value = "Night"
+            }
         });
 
         const editIcon = document.createElement("span");
@@ -122,8 +127,8 @@ function editDrive() {
     }
 
     // Format the date correctly
-    let formattedDate = new Date(dateInput);
-    formattedDate = formattedDate.toLocaleDateString("en-US");
+    const formattedDate = new Date(dateInput.split("-")[0], dateInput.split("-")[1] - 1, dateInput.split("-")[2]).toLocaleDateString("en-US");
+    console.log("FOrmatted date", formattedDate)
 
     // Replace saved drive with edited drive
     drives[selectedDrive] = [totalMinutes, formattedDate + " " + timeInput, isNight];
