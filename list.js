@@ -126,8 +126,14 @@ function editDrive() {
     formattedDate = formattedDate.toLocaleDateString("en-US");
 
     // Replace saved drive with edited drive
-    drives[selectedDrive] = [totalMintues, formattedDate + " " + timeInput, isNight];
+    drives[selectedDrive] = [totalMinutes, formattedDate + " " + timeInput, isNight];
     localStorage.setItem("drives", JSON.stringify(drives));
+
+    // Update drive list
+    displayDrives();
+
+    // Close the edit menu
+    document.getElementById("edit").hidden = true;
 }
 
 function deleteDrive() {
