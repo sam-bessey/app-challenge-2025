@@ -64,9 +64,9 @@ function displayDrives() {
             document.getElementById("hours").value = divideWithRemainder(drives[i][0], 60)[0];
             document.getElementById("minutes").value = divideWithRemainder(drives[i][0], 60)[1];
             if (drives[i][2]) {
-                document.getElementById("dayAndNight").value = "Day";
+                document.getElementById("dayAndNight").value = "Night";
             } else {
-                document.getElementById("dayAndNight").value = "Night"
+                document.getElementById("dayAndNight").value = "Day"
             }
         });
 
