@@ -9,7 +9,7 @@
                 rel="stylesheet"
         />
         <link
-                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete,edit"
                 rel="stylesheet"
         />
         <script src="list.js" type="module"></script>
@@ -33,6 +33,44 @@
                 Delete
             </button>
         </div>
+
+        <div class="confirm" hidden id="edit">
+            <h2 class="centred mulish-normal">Edit this drive</h2>
+            <form class="mulish-normal driveForm">
+                <label for="date">Date:</label>
+                <input class="dateAndTime" id="date" required type="date"/>
+                <br/>
+                <label for="time">Time:</label>
+                <input class="dateAndTime" id="time" required type="time"/>
+                <br/>
+                <label for="hours">Hours:</label>
+                <input class="number" id="hours" required type="number" value="0"/>
+                <label for="minutes">Minutes:</label>
+                <input
+                        class="number"
+                        id="minutes"
+                        required
+                        type="number"
+                        value="0"
+                />
+                <br/>
+                <label for="dayAndNight">Time of day:</label>
+                <select class="smallSelect" id="dayAndNight">
+                    <option>Day</option>
+                    <option>Night</option>
+                </select>
+            </form>
+            <button
+                    class="button halfButton redButton"
+                    id="cancelEdit"
+            >
+                Cancel
+            </button>
+            <button class="button halfButton primaryButton" id="saveEdit">
+                Save
+            </button>
+        </div>
+
         <a class="mulish-normal button backButton" href="index.html"
         ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
@@ -45,6 +83,6 @@
             Export
         </a>
         <a class="mulish-normal button secondaryButton" href="import.html">Import</a>
-        <ul id="driveList" class="mulish-normal driveList"></ul>
+        <ul class="mulish-normal driveList" id="driveList"></ul>
     </body>
 </html>

@@ -2,6 +2,26 @@ import {divideWithRemainder, updateDarkMode} from "./functions.js";
 
 let selectedDrive; // Create variable to keep track of which drive is selected
 
+function convertDate(originalDate) {
+    // Converts date to format yyyy-mm-dd to use in things like input type date
+    // Original date should be like mm/dd/yyyy or m/d/yyyy
+
+    // Get original dates
+    let year = originalDate.split("/")[2];
+    let month = originalDate.split("/")[0];
+    let day = originalDate.split("/")[1];
+
+    // Add 0s at the start of the month and day if necesary
+    if (month.length === 1) {
+        month = "0" + month;
+    }
+    if (day.length === 1) {
+        day = "0" + day;
+    }
+
+    return year + "-" + month + "-" + day;
+}
+
 function displayDrives() {
     // Format of drives:
     // [number of minutes, date and time, night true/false]
@@ -16,18 +36,43 @@ function displayDrives() {
         const item = document.createElement("li");
         item.setAttribute("class", "driveListItem");
 
+        // Date of drive
         const date = document.createElement("h4");
         date.innerText = drives[i][1];
 
+        // Time spent
         const time = document.createElement("p");
         time.innerText = `${divideWithRemainder(drives[i][0], 60)[0]}hr ${divideWithRemainder(drives[i][0], 60)[1]}min`;
-
         if (drives[i][2]) {
             time.innerText = time.innerText + " Night";
         }
 
+        // Div to hold controls
+        const controls = document.createElement("div");
+        controls.setAttribute("class", "rightSide");
+
+        // Edit drive
+        const editButton = document.createElement("button");
+        editButton.setAttribute("class", "button circleButton secondaryButton");
+        editButton.addEventListener("click", () => {
+            selectedDrive = i;
+            document.getElementById("edit").hidden = false;
+
+            // Fill out drive info
+            document.getElementById("date").value = convertDate(drives[i][1].split(" ")[0]);
+            document.getElementById("time").value = drives[i][1].split(" ")[1];
+            document.getElementById("hours").value = divideWithRemainder(drives[i][0], 60)[0];
+            document.getElementById("minutes").value = divideWithRemainder(drives[i][0], 60)[1];
+        });
+
+        const editIcon = document.createElement("span");
+        editIcon.setAttribute("class", "material-symbols-outlined");
+        editIcon.innerText = "edit";
+        editButton.appendChild(editIcon); // Add icon to the button
+
+        // Delete drive
         const deleteButton = document.createElement("button");
-        deleteButton.setAttribute("class", "button circleButton rightButton redButton");
+        deleteButton.setAttribute("class", "button circleButton redButton");
         deleteButton.addEventListener("click", () => {
             selectedDrive = i;
             document.getElementById("confirm").hidden = false;
@@ -38,10 +83,12 @@ function displayDrives() {
         deleteIcon.innerText = "delete";
         deleteButton.appendChild(deleteIcon); // Add icon to the button
 
-        // Add date and time to the list item
+        // Append everything
         item.appendChild(date);
         item.appendChild(time);
-        item.appendChild(deleteButton);
+        controls.appendChild(editButton);
+        controls.appendChild(deleteButton);
+        item.appendChild(controls);
 
         // Add the item to the list
         driveList.appendChild(item);
@@ -75,6 +122,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('confirm').hidden = true;
     });
     document.getElementById("deleteButton").addEventListener("click", deleteDrive);
+    document.getElementById("cancelEdit").addEventListener("click", () => {
+        document.getElementById('edit').hidden = true;
+    });
 
     // Display list of saved drives
     displayDrives();
