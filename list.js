@@ -95,6 +95,41 @@ function displayDrives() {
     }
 }
 
+function editDrive() {
+    // Get drives from localStorage
+    const drives = JSON.parse(localStorage.getItem("drives")) || [];
+
+    // Get form inputs
+    const dateInput = document.getElementById("date").value;
+    const timeInput = document.getElementById("time").value;
+    const hoursInput = document.getElementById("hours").value;
+    const minutesInput = document.getElementById("minutes").value;
+    const totalMinutes = Number(hoursInput) * 60 + Number(minutesInput);
+
+    // Check if the form is valid
+    if (dateInput === "" || timeInput === "" || totalMinutes === 0) {
+        console.log("Form is invalid!!!");
+        alert("You are missing some information. Make sure everything is filled out correctly, then try again.");
+        return;
+    }
+
+    // Is it night?
+    let isNight;
+    if (document.getElementById("dayAndNight").value === "Day") {
+        isNight = false;
+    } else {
+        isNight = true;
+    }
+
+    // Format the date correctly
+    let formattedDate = new Date(dateInput);
+    formattedDate = formattedDate.toLocaleDateString("en-US");
+
+    // Replace saved drive with edited drive
+    drives[selectedDrive] = [totalMintues, formattedDate + " " + timeInput, isNight];
+    localStorage.setItem("drives", JSON.stringify(drives));
+}
+
 function deleteDrive() {
     // Get drives from localStorage
     const drives = JSON.parse(localStorage.getItem("drives")) || [];
@@ -125,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cancelEdit").addEventListener("click", () => {
         document.getElementById('edit').hidden = true;
     });
+    document.getElementById("saveEdit").addEventListener("click", editDrive);
 
     // Display list of saved drives
     displayDrives();
