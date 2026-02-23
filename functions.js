@@ -6,26 +6,43 @@ export function divideWithRemainder(number1, number2) {
     return [quotient, remainder];
 }
 
-export function updateDarkMode() {
-    // Use dark mode (or not) depending on time of day
+export function updateTheme() {
+    const body = document.getElementById("body");
+
+    // Check local storage for theme
+    const theme = localStorage.getItem("theme") || "Pink";
+
+    // Change the theme
+    if (theme === "Green") {
+        body.classList.add("green")
+        body.classList.remove("blue");
+    } else if (theme === "Blue") {
+        body.classList.add("blue");
+        body.classList.remove("green")
+    } else {
+        body.classList.remove("blue");
+        body.classList.remove("green")
+    }
 
     // Check sessionStorage for dark mode
     let darkMode;
+
     if (sessionStorage.getItem("darkMode") === null) {
         // Session storage not set yet
         // Try to guess if its day or night based on the current time (day is between 7am and 6pm)
         const date = new Date();
         darkMode = date.getHours() <= 6 || date.getHours() >= 18;
         sessionStorage.setItem("darkMode", darkMode);
+        
     } else {
         darkMode = JSON.parse(sessionStorage.getItem("darkMode"));
     }
 
     // set dark mode if needed
     if (darkMode) {
-        document.getElementById("body").classList.add("darkMode");
+        body.classList.add("darkMode");
     } else {
-        document.getElementById("body").classList.remove("darkMode");
+        body.classList.remove("darkMode");
     }
 }
 

@@ -1,4 +1,4 @@
-import {updateDarkMode} from './functions.js';
+import {updateTheme} from './functions.js';
 
 let formattedDrives = []; // Imported drives, formatted the same as the rest of the app
 
@@ -56,7 +56,7 @@ function importDrives(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Use dark mode if needed
-    updateDarkMode();
+    updateTheme();
 
     // Add event listeners for buttons
     document.getElementById("fileSelectButton").addEventListener("click", () => {

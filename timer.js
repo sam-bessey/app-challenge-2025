@@ -1,5 +1,5 @@
 // This is the code for the timer
-import {divideWithRemainder, updateDarkMode} from './functions.js';
+import {divideWithRemainder, updateTheme} from './functions.js';
 
 let timing = true;
 let hours = 0;
@@ -107,7 +107,7 @@ function saveDrive() {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Check whether to use dark mode
-    updateDarkMode();
+    updateTheme();
 
     // check if start time has been set yet, and if not, set it
     if (sessionStorage.getItem("startTime") === null) {
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Update dark mode
-        updateDarkMode();
+        updateTheme();
     });
 
     // Run timer

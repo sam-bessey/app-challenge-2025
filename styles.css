@@ -14,7 +14,30 @@
     --textColor: black;
     --totalProgressColor: rgb(156, 156, 242);
     --nightProgressColor: #333030;
-    --totalProgressDarker: rgb(64, 64, 121);
+}
+
+.green {
+    --backgroundColor: rgb(173, 211, 169);
+    --primaryBackground: linear-gradient(25deg, rgb(133, 226, 164), rgb(7, 113, 47));
+    --secondaryBackground: rgb(138, 183, 138);
+    --totalProgressColor: rgb(75, 119, 14);
+}
+
+.green.darkMode {
+    --backgroundColor: rgb(3, 67, 17);
+    --primaryBackground: linear-gradient(25deg, rgb(114, 176, 118), rgb(3, 91, 31));
+    --secondaryBackground: rgb(33, 92, 40);
+}
+
+.blue {
+    --backgroundColor: rgb(151, 151, 224);
+    --primaryBackground: linear-gradient(25deg, rgb(208, 208, 244), rgb(74, 74, 206));
+    --totalProgressColor: rgb(94, 96, 209);
+}
+
+.blue.darkMode {
+    --backgroundColor: rgb(6, 10, 49);
+    --primaryBackground: linear-gradient(25deg, rgb(131, 127, 167), rgb(25, 30, 186));
 }
 
 .darkMode {
@@ -141,26 +164,26 @@ form:invalid > button {
     font-size: 5rem;
 }
 
+select {
+    background-color: transparent;
+    border-radius: 12px;
+    transition: 0.2s background-color;
+    color: var(--textColor);
+    border: 1px solid var(--textColor);
+
+}
+
 .bigSelect {
     text-align: center;
     padding: 0.5rem 1rem 10px 0.5rem;
     width: 10rem;
-    background-color: transparent;
-    border: 1px solid var(--textColor);
-    border-radius: 12px;
     margin: 0 calc(50% - 5rem) 2rem calc(50% - 5rem);
-    color: var(--textColor);
 }
 
 .smallSelect {
-    background-color: transparent;
     width: 5rem;
     padding: 0.5rem;
     margin: 0.5rem;
-    border: 1px solid var(--textColor);
-    border-radius: 12px;
-    transition: 0.2s;
-    color: var(--textColor);
 }
 
 .smallSelect:focus {

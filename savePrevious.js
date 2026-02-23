@@ -1,4 +1,4 @@
-import {updateDarkMode} from './functions.js';
+import {updateTheme} from './functions.js';
 
 function savePrevious(event) {
     // Format of drives:
@@ -45,7 +45,7 @@ function savePrevious(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Use dark mode if needed
-    updateDarkMode();
+    updateTheme();
 
     // Add event listeners for buttons
     document.getElementById("submit").addEventListener("click", () => {
