@@ -17,9 +17,9 @@
 }
 
 .green {
-    --backgroundColor: rgb(137, 176, 133);
+    --backgroundColor: rgb(173, 211, 169);
     --primaryBackground: linear-gradient(25deg, rgb(133, 226, 164), rgb(7, 113, 47));
-    --secondaryBackground: rgb(48, 153, 48);
+    --secondaryBackground: rgb(138, 183, 138);
     --totalProgressColor: rgb(75, 119, 14);
 }
 
@@ -27,6 +27,17 @@
     --backgroundColor: rgb(3, 67, 17);
     --primaryBackground: linear-gradient(25deg, rgb(114, 176, 118), rgb(3, 91, 31));
     --secondaryBackground: rgb(33, 92, 40);
+}
+
+.blue {
+    --backgroundColor: rgb(151, 151, 224);
+    --primaryBackground: linear-gradient(25deg, rgb(208, 208, 244), rgb(74, 74, 206));
+    --totalProgressColor: rgb(94, 96, 209);
+}
+
+.blue.darkMode {
+    --backgroundColor: rgb(6, 10, 49);
+    --primaryBackground: linear-gradient(25deg, rgb(131, 127, 167), rgb(25, 30, 186));
 }
 
 .darkMode {
