@@ -128,7 +128,7 @@ function editDrive() {
 
     // Format the date correctly
     const formattedDate = new Date(dateInput.split("-")[0], dateInput.split("-")[1] - 1, dateInput.split("-")[2]).toLocaleDateString("en-US");
-    console.log("FOrmatted date", formattedDate)
+    console.log("Formatted date", formattedDate)
 
     // Replace saved drive with edited drive
     drives[selectedDrive] = [totalMinutes, formattedDate + " " + timeInput, isNight];
