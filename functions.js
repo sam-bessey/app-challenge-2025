@@ -7,7 +7,11 @@ export function divideWithRemainder(number1, number2) {
 }
 
 export function updateTheme() {
-    // Use dark mode (or not) depending on time of day
+    // Check local storage for theme
+    const theme = localStorage.getItem("theme") || "Pink";
+    if (theme === "Green") {
+        document.getElementById("body").classList.add("green")
+    }
 
     // Check sessionStorage for dark mode
     let darkMode;

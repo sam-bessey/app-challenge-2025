@@ -9,5 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", document.getElementById("theme").value);
 
         // Update theme
+        updateTheme();
     });
 });

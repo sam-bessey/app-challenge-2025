@@ -14,7 +14,19 @@
     --textColor: black;
     --totalProgressColor: rgb(156, 156, 242);
     --nightProgressColor: #333030;
-    --totalProgressDarker: rgb(64, 64, 121);
+}
+
+.green {
+    --backgroundColor: rgb(137, 176, 133);
+    --primaryBackground: linear-gradient(25deg, rgb(133, 226, 164), rgb(7, 113, 47));
+    --secondaryBackground: rgb(48, 153, 48);
+    --totalProgressColor: rgb(75, 119, 14);
+}
+
+.green.darkMode {
+    --backgroundColor: rgb(3, 67, 17);
+    --primaryBackground: linear-gradient(25deg, rgb(114, 176, 118), rgb(3, 91, 31));
+    --secondaryBackground: rgb(33, 92, 40);
 }
 
 .darkMode {
