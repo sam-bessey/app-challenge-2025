@@ -102,6 +102,11 @@ form:invalid > button {
     padding: 1rem;
 }
 
+.paragraph {
+    padding: 1.5rem;
+    line-height: 1.8;
+}
+
 .button {
     width: 80%;
     margin: 0.7rem 10% 0.7rem 10%;
