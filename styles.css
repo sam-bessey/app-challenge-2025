@@ -12,6 +12,7 @@
             rgb(143, 15, 15)
     );
     --textColor: black;
+    --linkColor: rgb(107, 42, 133);
     --totalProgressColor: rgb(156, 156, 242);
     --nightProgressColor: #333030;
 }
@@ -20,24 +21,28 @@
     --backgroundColor: rgb(173, 211, 169);
     --primaryBackground: linear-gradient(25deg, rgb(133, 226, 164), rgb(7, 113, 47));
     --secondaryBackground: rgb(138, 183, 138);
+    --linkColor: rgb(27, 82, 14);
     --totalProgressColor: rgb(75, 119, 14);
 }
 
 .green.darkMode {
     --backgroundColor: rgb(3, 67, 17);
     --primaryBackground: linear-gradient(25deg, rgb(114, 176, 118), rgb(3, 91, 31));
+    --linkColor: rgb(137, 210, 120);
     --secondaryBackground: rgb(33, 92, 40);
 }
 
 .blue {
     --backgroundColor: rgb(151, 151, 224);
     --primaryBackground: linear-gradient(25deg, rgb(208, 208, 244), rgb(74, 74, 206));
+    --linkColor: rgb(7, 64, 206);
     --totalProgressColor: rgb(94, 96, 209);
 }
 
 .blue.darkMode {
     --backgroundColor: rgb(6, 10, 49);
     --primaryBackground: linear-gradient(25deg, rgb(131, 127, 167), rgb(25, 30, 186));
+    --linkColor: rgb(130, 162, 243);
 }
 
 .darkMode {
@@ -50,6 +55,7 @@
     --secondaryBackground: rgb(70, 70, 117);
     --redBackground: linear-gradient(25deg, rgb(152, 106, 106), rgb(83, 3, 3));
     --textColor: rgb(207, 207, 207);
+    --linkColor: rgb(189, 121, 215);
     --totalProgressColor: rgb(132, 132, 200);
     --nightProgressColor: #575252;
 }
@@ -105,6 +111,10 @@ form:invalid > button {
 .paragraph {
     padding: 1.5rem;
     line-height: 1.8;
+}
+
+.link {
+    color: var(--linkColor);
 }
 
 .button {
