@@ -90,6 +90,10 @@ form:invalid > button {
     margin-top: 0;
 }
 
+.centredVertical {
+    margin-top: 35vh;
+}
+
 .mulish-normal {
     font-family: "Mulish", sans-serif;
     font-optical-sizing: auto;
@@ -115,6 +119,16 @@ form:invalid > button {
 
 .link {
     color: var(--linkColor);
+}
+
+.loading {
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    transition: 0.3s opacity;
 }
 
 .button {
