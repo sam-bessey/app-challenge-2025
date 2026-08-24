@@ -34,10 +34,10 @@ export async function updateTheme() {
         const date = new Date();
         const suncalc =
             await import("https://cdn.jsdelivr.net/npm/suncalc/+esm");
-        const position = suncalc.getPosition(date, 43.8004, 70.1868);
+        const position = suncalc.getPosition(date, 43.8004, -70.1868);
 
         // Save dark mode
-        darkMode = position.altitude > 0;
+        darkMode = position.altitude < 0;
         sessionStorage.setItem("darkMode", darkMode);
     } else {
         darkMode = JSON.parse(sessionStorage.getItem("darkMode"));
