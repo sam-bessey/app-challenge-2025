@@ -1,4 +1,4 @@
-import {divideWithRemainder, updateTheme} from "./functions.js";
+import { divideWithRemainder, updateTheme } from "./functions.js";
 
 let selectedDrive; // Create variable to keep track of which drive is selected
 
@@ -59,14 +59,22 @@ function displayDrives() {
             document.getElementById("edit").hidden = false;
 
             // Fill out drive info
-            document.getElementById("date").value = convertDate(drives[i][1].split(" ")[0]);
+            document.getElementById("date").value = convertDate(
+                drives[i][1].split(" ")[0],
+            );
             document.getElementById("time").value = drives[i][1].split(" ")[1];
-            document.getElementById("hours").value = divideWithRemainder(drives[i][0], 60)[0];
-            document.getElementById("minutes").value = divideWithRemainder(drives[i][0], 60)[1];
+            document.getElementById("hours").value = divideWithRemainder(
+                drives[i][0],
+                60,
+            )[0];
+            document.getElementById("minutes").value = divideWithRemainder(
+                drives[i][0],
+                60,
+            )[1];
             if (drives[i][2]) {
                 document.getElementById("dayAndNight").value = "Night";
             } else {
-                document.getElementById("dayAndNight").value = "Day"
+                document.getElementById("dayAndNight").value = "Day";
             }
         });
 
@@ -114,7 +122,9 @@ function editDrive() {
     // Check if the form is valid
     if (dateInput === "" || timeInput === "" || totalMinutes === 0) {
         console.log("Form is invalid!!!");
-        alert("You are missing some information. Make sure everything is filled out correctly, then try again.");
+        alert(
+            "You are missing some information. Make sure everything is filled out correctly, then try again.",
+        );
         return;
     }
 
@@ -127,11 +137,19 @@ function editDrive() {
     }
 
     // Format the date correctly
-    const formattedDate = new Date(dateInput.split("-")[0], dateInput.split("-")[1] - 1, dateInput.split("-")[2]).toLocaleDateString("en-US");
-    console.log("Formatted date", formattedDate)
+    const formattedDate = new Date(
+        dateInput.split("-")[0],
+        dateInput.split("-")[1] - 1,
+        dateInput.split("-")[2],
+    ).toLocaleDateString("en-US");
+    console.log("Formatted date", formattedDate);
 
     // Replace saved drive with edited drive
-    drives[selectedDrive] = [totalMinutes, formattedDate + " " + timeInput, isNight];
+    drives[selectedDrive] = [
+        totalMinutes,
+        formattedDate + " " + timeInput,
+        isNight,
+    ];
     localStorage.setItem("drives", JSON.stringify(drives));
 
     // Update drive list
@@ -165,11 +183,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listeners for buttons
     document.getElementById("cancelConfirm").addEventListener("click", () => {
-        document.getElementById('confirm').hidden = true;
+        document.getElementById("confirm").hidden = true;
     });
-    document.getElementById("deleteButton").addEventListener("click", deleteDrive);
+    document
+        .getElementById("deleteButton")
+        .addEventListener("click", deleteDrive);
     document.getElementById("cancelEdit").addEventListener("click", () => {
-        document.getElementById('edit').hidden = true;
+        document.getElementById("edit").hidden = true;
     });
     document.getElementById("saveEdit").addEventListener("click", editDrive);
 

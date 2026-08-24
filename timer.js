@@ -1,5 +1,5 @@
 // This is the code for the timer
-import {divideWithRemainder, updateTheme} from './functions.js';
+import { divideWithRemainder, updateTheme } from "./functions.js";
 
 let timing = true;
 let hours = 0;
@@ -114,17 +114,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Drive not started yet");
 
         // Get the current time and save it to sessionStorage
-        sessionStorage.setItem(
-            "startTime",
-            JSON.stringify(Date.now())
-        );
+        sessionStorage.setItem("startTime", JSON.stringify(Date.now()));
     }
 
     // Add event listeners
     document.getElementById("doneButton").addEventListener("click", stopTimer);
     document.getElementById("deleteButton").addEventListener("click", () => {
-        sessionStorage.removeItem('startTime');
-        window.location.href = 'index.html';
+        sessionStorage.removeItem("startTime");
+        window.location.href = "index.html";
     });
     document.getElementById("saveButton").addEventListener("click", saveDrive);
     document.getElementById("dayAndNight").addEventListener("change", () => {

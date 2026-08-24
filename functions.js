@@ -14,14 +14,14 @@ export async function updateTheme() {
 
     // Change the theme
     if (theme === "Green") {
-        body.classList.add("green")
+        body.classList.add("green");
         body.classList.remove("blue");
     } else if (theme === "Blue") {
         body.classList.add("blue");
-        body.classList.remove("green")
+        body.classList.remove("green");
     } else {
         body.classList.remove("blue");
-        body.classList.remove("green")
+        body.classList.remove("green");
     }
 
     // Check sessionStorage for dark mode
@@ -32,14 +32,14 @@ export async function updateTheme() {
 
         // Get stuff we need
         const date = new Date();
-        const suncalc = await import('https://cdn.jsdelivr.net/npm/suncalc/+esm');
+        const suncalc =
+            await import("https://cdn.jsdelivr.net/npm/suncalc/+esm");
         const position = suncalc.getPosition(date, 43.8004, 70.1868);
 
         // Save dark mode
         darkMode = position.altitude > 0;
         sessionStorage.setItem("darkMode", darkMode);
-
-        } else {
+    } else {
         darkMode = JSON.parse(sessionStorage.getItem("darkMode"));
     }
 
@@ -82,5 +82,4 @@ export function getData() {
         console.log("MINUTES:", minutes);
         return [drives, minutes, nightMinutes];
     }
-
 }

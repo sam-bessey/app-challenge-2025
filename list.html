@@ -1,20 +1,20 @@
 <!doctype html>
 <html>
     <head>
-        <link href="styles.css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com" rel="preconnect"/>
-        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+        <link href="styles.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
         <link
-                href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-                rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
         />
         <link
-                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete,edit"
-                rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward,delete,edit"
+            rel="stylesheet"
         />
         <script src="list.js" type="module"></script>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <meta name="darkreader-lock">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta name="darkreader-lock" />
         <title>My drives</title>
     </head>
     <body id="body">
@@ -25,8 +25,8 @@
                 as a past drive.
             </p>
             <button
-                    class="button halfButton secondaryButton"
-                    id="cancelConfirm"
+                class="button halfButton secondaryButton"
+                id="cancelConfirm"
             >
                 Cancel
             </button>
@@ -39,32 +39,35 @@
             <h2 class="centred mulish-normal">Edit this drive</h2>
             <form class="mulish-normal driveForm">
                 <label for="date">Date:</label>
-                <input class="dateAndTime" id="date" required type="date"/>
-                <br/>
+                <input class="dateAndTime" id="date" required type="date" />
+                <br />
                 <label for="time">Time:</label>
-                <input class="dateAndTime" id="time" required type="time"/>
-                <br/>
+                <input class="dateAndTime" id="time" required type="time" />
+                <br />
                 <label for="hours">Hours:</label>
-                <input class="number" id="hours" required type="number" value="0"/>
+                <input
+                    class="number"
+                    id="hours"
+                    required
+                    type="number"
+                    value="0"
+                />
                 <label for="minutes">Minutes:</label>
                 <input
-                        class="number"
-                        id="minutes"
-                        required
-                        type="number"
-                        value="0"
+                    class="number"
+                    id="minutes"
+                    required
+                    type="number"
+                    value="0"
                 />
-                <br/>
+                <br />
                 <label for="dayAndNight">Time of day:</label>
                 <select class="smallSelect" id="dayAndNight">
                     <option>Day</option>
                     <option>Night</option>
                 </select>
             </form>
-            <button
-                    class="button halfButton redButton"
-                    id="cancelEdit"
-            >
+            <button class="button halfButton redButton" id="cancelEdit">
                 Cancel
             </button>
             <button class="button halfButton primaryButton" id="saveEdit">
@@ -73,17 +76,16 @@
         </div>
 
         <a class="mulish-normal button backButton" href="index.html"
-        ><span class="material-symbols-outlined">chevron_backward</span>
+            ><span class="material-symbols-outlined">chevron_backward</span>
             Back</a
         >
         <h1 class="centred mulish-normal">My drives</h1>
-        <a
-                class="mulish-normal button primaryButton"
-                href="export.html"
-        >
+        <a class="mulish-normal button primaryButton" href="export.html">
             Export
         </a>
-        <a class="mulish-normal button secondaryButton" href="import.html">Import</a>
+        <a class="mulish-normal button secondaryButton" href="import.html"
+            >Import</a
+        >
         <ul class="mulish-normal driveList" id="driveList"></ul>
     </body>
 </html>

@@ -1,4 +1,4 @@
-import {updateTheme} from './functions.js';
+import { updateTheme } from "./functions.js";
 
 let formattedDrives = []; // Imported drives, formatted the same as the rest of the app
 
@@ -28,14 +28,18 @@ function importDrives(event) {
 
         // Convert it to an array
         const rows = reader.result.split("\n");
-        let importedDrives = rows.map(row => {
+        let importedDrives = rows.map((row) => {
             return row.split(",");
         });
         importedDrives.shift(); // Remove the header row
 
         // Format it so it's compatible with the rest of the app
         for (let i = 0; i < importedDrives.length; i++) {
-            formattedDrives.push([convertTime(importedDrives[i][1]), importedDrives[i][0], importedDrives[i][2] !== "0"]);
+            formattedDrives.push([
+                convertTime(importedDrives[i][1]),
+                importedDrives[i][0],
+                importedDrives[i][2] !== "0",
+            ]);
         }
 
         console.log("New drives", formattedDrives);
@@ -59,11 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTheme();
 
     // Add event listeners for buttons
-    document.getElementById("fileSelectButton").addEventListener("click", () => {
-        document.getElementById("fileSelect").click();
-    });
+    document
+        .getElementById("fileSelectButton")
+        .addEventListener("click", () => {
+            document.getElementById("fileSelect").click();
+        });
 
-    document.getElementById("fileSelect").addEventListener("change", importDrives);
+    document
+        .getElementById("fileSelect")
+        .addEventListener("change", importDrives);
 
     document.getElementById("replaceButton").addEventListener("click", () => {
         // Replace drive list with new drives
