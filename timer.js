@@ -80,9 +80,9 @@ function saveDrive() {
         "/" +
         date.getFullYear() +
         " " +
-        date.getHours() +
+        String(date.getHours()).padStart(2, "0") +
         ":" +
-        date.getMinutes();
+        String(date.getMinutes()).padStart(2, "0");
 
     // Is it night?
     let isNight;
