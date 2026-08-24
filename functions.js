@@ -6,7 +6,7 @@ export function divideWithRemainder(number1, number2) {
     return [quotient, remainder];
 }
 
-export function updateTheme() {
+export async function updateTheme() {
     const body = document.getElementById("body");
 
     // Check local storage for theme
@@ -14,26 +14,31 @@ export function updateTheme() {
 
     // Change the theme
     if (theme === "Green") {
-        body.classList.add("green")
+        body.classList.add("green");
         body.classList.remove("blue");
     } else if (theme === "Blue") {
         body.classList.add("blue");
-        body.classList.remove("green")
+        body.classList.remove("green");
     } else {
         body.classList.remove("blue");
-        body.classList.remove("green")
+        body.classList.remove("green");
     }
 
     // Check sessionStorage for dark mode
     let darkMode;
 
     if (sessionStorage.getItem("darkMode") === null) {
-        // Session storage not set yet
-        // Try to guess if its day or night based on the current time (day is between 7am and 6pm)
+        // This means that session storage is not set yet
+
+        // Get stuff we need
         const date = new Date();
-        darkMode = date.getHours() <= 6 || date.getHours() >= 18;
+        const suncalc =
+            await import("https://cdn.jsdelivr.net/npm/suncalc/+esm");
+        const position = suncalc.getPosition(date, 43.8004, -70.1868);
+
+        // Save dark mode
+        darkMode = position.altitude < 0;
         sessionStorage.setItem("darkMode", darkMode);
-        
     } else {
         darkMode = JSON.parse(sessionStorage.getItem("darkMode"));
     }
@@ -77,5 +82,4 @@ export function getData() {
         console.log("MINUTES:", minutes);
         return [drives, minutes, nightMinutes];
     }
-
 }

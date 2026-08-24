@@ -1,4 +1,4 @@
-import {updateTheme} from './functions.js';
+import { updateTheme } from "./functions.js";
 
 function savePrevious(event) {
     // Format of drives:
@@ -17,7 +17,9 @@ function savePrevious(event) {
     // Check if the form is valid
     if (dateInput === "" || timeInput === "" || totalMinutes === 0) {
         console.log("Form is invalid!!!");
-        alert("You are missing some information. Make sure everything is filled out correctly, then try again.");
+        alert(
+            "You are missing some information. Make sure everything is filled out correctly, then try again.",
+        );
         return;
     }
 

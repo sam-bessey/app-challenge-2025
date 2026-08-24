@@ -1,4 +1,4 @@
-import {divideWithRemainder, updateTheme} from './functions.js';
+import { divideWithRemainder, updateTheme } from "./functions.js";
 
 function exportCsv() {
     // Get drives from localStorage
@@ -8,7 +8,11 @@ function exportCsv() {
     // Format drives to save to CSV
     for (let i = 0; i < drives.length; i++) {
         // Format time
-        const time = divideWithRemainder(drives[i][0], 60)[0] + "hr " + divideWithRemainder(drives[i][0], 60)[1] + "min";
+        const time =
+            divideWithRemainder(drives[i][0], 60)[0] +
+            "hr " +
+            divideWithRemainder(drives[i][0], 60)[1] +
+            "min";
 
         // Append to list
         if (drives[i][2]) {
@@ -30,11 +34,11 @@ function exportCsv() {
     console.log("CSV string", csv);
 
     // Create blob with CSV data and a url for it
-    const blob = new Blob([csv], {type: 'text/csv'});
+    const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
 
     // Create link element to start the download
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = "drives.csv";
 
