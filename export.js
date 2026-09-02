@@ -1,4 +1,5 @@
-import { divideWithRemainder, updateTheme } from "./functions.js";
+import { divideWithRemainder, updateTheme, getData } from "./functions.js";
+import { PDFDocument } from "https://cdn.jsdelivr.net/npm/pdf-lib/+esm";
 
 function exportCsv() {
     // Get drives from localStorage
@@ -48,10 +49,58 @@ function exportCsv() {
     document.body.removeChild(a);
 }
 
+async function exportForm() {
+    const existingPdfBytes = await fetch(
+        "MVE-21 Permittee Driving Log Rev 10-25_2.pdf",
+    ).then((res) => res.arrayBuffer());
+
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[0];
+    const { width, height } = firstPage.getSize();
+
+    // get the form and fields
+    const form = pdfDoc.getForm();
+    const fields = form.getFields();
+
+    // log form fields
+    console.log("Available Form Fields:");
+    fields.forEach((field) => {
+        const name = field.getName();
+        const type = field.constructor.name; // Displays PDFTextField, PDFCheckBox, etc.
+        console.log(`- Name: "${name}" | Type: ${type}`);
+    });
+
+    // Fill out the fields that only appear once
+    form.getTextField("TOTAL HOURS OF PRACTICE DRIVING").setText(
+        `${divideWithRemainder(getData()[1], 60)[0]}hr ${divideWithRemainder(getData()[1], 60)[1]}min`,
+    );
+    form.getTextField("TOTAL HOURS OF NIGHT DRIVING").setText(
+        `${divideWithRemainder(getData()[2], 60)[0]}hr ${divideWithRemainder(getData()[2], 60)[1]}min`,
+    );
+
+    const pdfBytes = await pdfDoc.save();
+
+    // Create blob with CSV data and a url for it
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const fileUrl = window.URL.createObjectURL(blob);
+
+    // Create link element to start the download
+    const a = document.createElement("a");
+    a.href = fileUrl;
+    a.download = "Driving Log.csv";
+
+    // Append the link element to the document, then click it
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Check whether to use dark mode
     updateTheme();
 
     // Add event listeners
     document.getElementById("exportCsv").addEventListener("click", exportCsv);
+    document.getElementById("exportForm").addEventListener("click", exportForm);
 });
