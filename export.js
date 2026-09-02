@@ -50,14 +50,13 @@ function exportCsv() {
 }
 
 async function exportForm() {
+    const data = getData();
+
     const existingPdfBytes = await fetch(
         "MVE-21 Permittee Driving Log Rev 10-25_2.pdf",
     ).then((res) => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
-    const pages = pdfDoc.getPages();
-    const firstPage = pages[0];
-    const { width, height } = firstPage.getSize();
 
     // get the form and fields
     const form = pdfDoc.getForm();
@@ -78,6 +77,23 @@ async function exportForm() {
     form.getTextField("TOTAL HOURS OF NIGHT DRIVING").setText(
         `${divideWithRemainder(getData()[2], 60)[0]}hr ${divideWithRemainder(getData()[2], 60)[1]}min`,
     );
+// 
+
+    // Fill out the actual driving
+
+    // decide how many pages are needed (25 rows per page)
+    let pagesNeeded;
+    if (data[0].length <= 25) {
+        pagesNeeded = 1;
+    } else if (data[0].length <= 50) {
+        pagesNeeded = 2
+    } else {
+        alert("too many drives")
+        pagesNeeded = 2;
+    }
+    for (let i = 0; i < data[0].length; i++) {
+        form.getTextField(`Date and TimeRow${i+1}`).setText(data[0][i][1])
+    }
 
     const pdfBytes = await pdfDoc.save();
 
