@@ -77,7 +77,6 @@ async function exportForm() {
     form.getTextField("TOTAL HOURS OF NIGHT DRIVING").setText(
         `${divideWithRemainder(getData()[2], 60)[0]}hr ${divideWithRemainder(getData()[2], 60)[1]}min`,
     );
-// 
 
     // Fill out the actual driving
 
