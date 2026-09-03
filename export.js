@@ -53,10 +53,33 @@ async function exportForm() {
     const data = getData();
 
     const existingPdfBytes = await fetch(
-        "VERSION 2 MVE-21 Permittee Driving Log Rev 10-25_2.pdf",
+        "MVE-21 Permittee Driving Log Rev 10-25_2.pdf",
     ).then((res) => res.arrayBuffer());
 
+    // Get pdf and some pages
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const pages = pdfDoc.getPages();
+
+    // decide how many pages are needed (25 rows per page)
+    const pagesNeeded = Math.ceil(data[0].length / 25);
+
+    // create pages 2-? if needed
+    if (pagesNeeded > 2) {
+        // create pages if needed
+        for (let i = 0; i < pagesNeeded - 2; i++) {
+            // get blank page (blank does not mean EMPTY. it means no other forms besides driving log
+            const blankDoc = await PDFDocument.load(
+                await fetch("BLANK driving log.pdf").then((res) =>
+                    res.arrayBuffer(),
+                ),
+            );
+            const blankPage = blankDoc.getPages()[0];
+            const [willCopy] = await pdfDoc.copyPages(blankDoc, [0])
+
+            // and insert it!
+            pdfDoc.insertPage(1, willCopy);
+        }
+    }
 
     // get the form and fields
     const form = pdfDoc.getForm();
@@ -80,25 +103,17 @@ async function exportForm() {
 
     // Fill out the actual driving
 
-    // decide how many pages are needed (25 rows per page)
-    let pagesNeeded;
-    if (data[0].length <= 25) {
-        pagesNeeded = 1;
-    } else if (data[0].length <= 50) {
-        pagesNeeded = 2
-    } else {
-        alert("too many drives")
-        pagesNeeded = 2;
-    }
-    for (let i = 0; i < data[0].length; i++) {
-        form.getTextField(`Date and TimeRow${i+1}`).setText(data[0][i][1])
+    // page 1
+    for (let i = 0; i < Math.min(data[0].length, 25); i++) {
+        form.getTextField(`Date and TimeRow${i + 1}`).setText(data[0][i][1]);
     }
 
+    // save it and stuff like that
     const pdfBytes = await pdfDoc.save();
 
     // Create blob with CSV data and a url for it
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-  const fileUrl = window.URL.createObjectURL(blob);
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const fileUrl = window.URL.createObjectURL(blob);
 
     // Create link element to start the download
     const a = document.createElement("a");
