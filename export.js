@@ -74,10 +74,36 @@ async function exportForm() {
                 ),
             );
             const blankPage = blankDoc.getPages()[0];
-            const [willCopy] = await pdfDoc.copyPages(blankDoc, [0])
+            const [willCopy] = await pdfDoc.copyPages(blankDoc, [0]);
 
             // and insert it!
-            pdfDoc.insertPage(1, willCopy);
+            const newPage = pdfDoc.insertPage(1, willCopy);
+
+            // do weird stuff with the forms:
+
+            // find the forms
+            const blankForm = blankDoc.getForm();
+            const destForm = pdfDoc.getForm();
+
+            // recreate the form fields on the destination page
+            const blankFields = blankForm.getFields();
+            blankFields.forEach((field) => {
+                const fieldName = `${field.getName()}_${i + 3}`; // add 3 to the end because 2 is the last page
+                const newTextField = destForm.createTextField(fieldName);
+
+                // Get position/dimensions from existing field widgets if needed
+                const widgets = field.acroField.getWidgets();
+                if (widgets.length > 0) {
+                    const rect = widgets[0].getRectangle();
+                    newTextField.addToPage(newPage, {
+                        x: rect.x,
+                        y: rect.y,
+                        width: rect.width,
+                        height: rect.height,
+                        borderWidth: 0,
+                    });
+                }
+            });
         }
     }
 
