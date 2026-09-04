@@ -5,7 +5,7 @@
         rgb(148, 207, 238),
         rgb(185, 114, 201)
     );
-    --secondaryBackground: rgb(189, 189, 250);
+    --secondaryBackground: rgb(171, 171, 253);
     --redBackground: linear-gradient(
         25deg,
         rgb(249, 181, 181),
@@ -13,7 +13,7 @@
     );
     --textColor: black;
     --linkColor: rgb(107, 42, 133);
-    --totalProgressColor: rgb(156, 156, 242);
+    --totalProgressColor: rgb(171, 171, 253);
     --nightProgressColor: #333030;
 }
 
