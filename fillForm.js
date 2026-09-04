@@ -1,9 +1,15 @@
 import { divideWithRemainder, updateTheme, getData } from "./functions.js";
-import { PDFDocument, TextAlignment } from "https://cdn.jsdelivr.net/npm/pdf-lib/+esm";
+import {
+    PDFDocument,
+    TextAlignment,
+} from "https://cdn.jsdelivr.net/npm/pdf-lib/+esm";
 
 async function exportForm(event) {
     // stop page reload!
     event.preventDefault();
+
+    const submitButton = document.getElementById("submit");
+    const nextFrame = () => new Promise(requestAnimationFrame); // use await nextFrame() to reanimate progress.
 
     // Get form inputs
     const supervisingNameAge =
@@ -20,6 +26,10 @@ async function exportForm(event) {
         return;
     }
 
+    // Say that it's loading
+    submitButton.innerText = "Loading... (0%)";
+    await nextFrame();
+
     // Get the data and all that
     const data = getData();
 
@@ -33,6 +43,10 @@ async function exportForm(event) {
 
     // decide how many pages are needed (25 rows per page)
     const pagesNeeded = Math.ceil(data[0].length / 25);
+
+    // Update progress
+    submitButton.innerText = "Loading... (1%)";
+    await nextFrame();
 
     // create pages if needed
     if (pagesNeeded > 2) {
@@ -103,6 +117,10 @@ async function exportForm(event) {
 
     // Page 1
     for (let i = 0; i < Math.min(data[0].length, 25); i++) {
+        // Update progress
+        submitButton.innerText = `Loading... (${Math.round((i / data[0].length) * 100)}%)`;
+        await nextFrame();
+
         form.getTextField(`Date and TimeRow${i + 1}`).setText(data[0][i][1]);
 
         // time spent driving in easy to read format
@@ -137,7 +155,14 @@ async function exportForm(event) {
         for (let page = 3; page < pagesNeeded + 1; page++) {
             // Go through the 25 items for this page. We know its a full 25 because if it wasn't, we would be on the last page, not a middle one.
             for (let i = 0; i < 25; i++) {
+                // Log to console + update progress
                 console.log("NOW ON PAGE", page, "\nNOW ON item", i);
+                console.log(
+                    "percent",
+                    (((page - 2) * 25 + i) / data[0].length) * 100,
+                );
+                submitButton.innerText = `Loading... (${Math.round((((page - 2) * 25 + i) / data[0].length) * 100)}%)`;
+                await nextFrame();
 
                 form.getTextField(`Date and TimeRow${i + 1}_${page}`).setText(
                     data[0][i + 25 * (page - 2)][1],
@@ -183,6 +208,10 @@ async function exportForm(event) {
     if (pagesNeeded > 1) {
         // Go through the remaining items in the drives
         for (let i = 0; i < data[0].length - (pagesNeeded - 1) * 25; i++) {
+            // update progress
+            submitButton.innerText = `Loading... (${Math.round((((pagesNeeded - 1) * 25 + i) / data[0].length) * 100)}%)`;
+            await nextFrame();
+
             form.getTextField(`Date and TimeRow${i + 1}_2`).setText(
                 data[0][i][1],
             );
@@ -216,6 +245,8 @@ async function exportForm(event) {
         }
     }
 
+    submitButton.innerText = `Loading... (100%)`;
+
     // save it and stuff like that
     const pdfBytes = await pdfDoc.save();
 
@@ -232,6 +263,9 @@ async function exportForm(event) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
+    // reset submit button progress
+    submitButton.innerText = `Submit!`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -239,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTheme();
 
     // Add event listeners
-        document.getElementById("submit").addEventListener("click", (event) => {
+    document.getElementById("submit").addEventListener("click", (event) => {
         exportForm(event);
     });
 });
