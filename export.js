@@ -1,4 +1,4 @@
-import { divideWithRemainder, updateTheme } from "./functions.js";
+import { divideWithRemainder, updateTheme, getData } from "./functions.js";
 
 function exportCsv() {
     // Get drives from localStorage

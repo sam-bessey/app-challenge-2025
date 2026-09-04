@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTheme();
 
     // Add event listeners for buttons
-    document.getElementById("submit").addEventListener("click", () => {
+    document.getElementById("submit").addEventListener("click", (event) => {
         savePrevious(event);
     });
 });

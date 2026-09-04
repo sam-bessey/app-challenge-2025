@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <head>
+        <link href="styles.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=chevron_backward"
+            rel="stylesheet"
+        />
+        <script src="fillForm.js" type="module"></script>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta name="darkreader-lock" />
+        <title>Export your drives</title>
+    </head>
+    <body id="body">
+        <a class="mulish-normal button backButton" href="export.html">
+            <span class="material-symbols-outlined">chevron_backward</span>
+            Cancel
+        </a>
+        <h1 class="centred mulish-normal">Fill out driving form</h1>
+        <p class="mulish-normal paragraph">
+            This is the official form that you need to use to get your license.
+            DriveTime can fill it out for you automatically, or you can fill it
+            out yourself
+            <a
+                href="https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/MVE-21%20Permittee%20Driving%20Log%20Rev%205-22.pdf"
+                class="link"
+                >here</a
+            >
+            if you really want to.
+        </p>
+        <form class="mulish-normal driveForm">
+            <label for="supervisingNameAge"
+                >Supervising driver's name and age:</label
+            >
+            <input
+                class="otherForm"
+                id="supervisingNameAge"
+                required
+                type="text"
+            />
+            <br />
+
+            <label for="supervisingLicense"
+                >Supervising driver's license number:</label
+            >
+            <input
+                class="otherForm"
+                id="supervisingLicense"
+                required
+                type="text"
+            />
+            <br />
+
+            <button
+                class="mulish-normal button primaryButton"
+                id="submit"
+                type="submit"
+            >
+                Submit!
+            </button>
+            <p class="mulish-normal paragraph">
+                DriveTime fills out the majority of the form for you, but there
+                are still some things you need to write and sign yourself on the
+                first and last pages.
+                <br /><br />
+                Make sure to look at your form to make sure it is accurate
+                before giving it to the BMV!
+            </p>
+        </form>
+    </body>
+</html>
