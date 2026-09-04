@@ -250,7 +250,7 @@ select {
     color: black;
 }
 
-.dateAndTime {
+.otherForm {
     width: 10rem;
     padding: 0.5rem;
     margin: 0.5rem;
@@ -260,7 +260,7 @@ select {
     transition: 0.2s;
 }
 
-.dateAndTime:focus {
+.otherForm:focus {
     background-color: white;
     color: black;
 }
