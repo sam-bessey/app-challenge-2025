@@ -63,7 +63,7 @@ async function exportForm() {
     // decide how many pages are needed (25 rows per page)
     const pagesNeeded = Math.ceil(data[0].length / 25);
 
-    // create pages 2-? if needed
+    // create pages if needed
     if (pagesNeeded > 2) {
         // create pages if needed
         for (let i = 0; i < pagesNeeded - 2; i++) {
@@ -77,9 +77,9 @@ async function exportForm() {
             const [willCopy] = await pdfDoc.copyPages(blankDoc, [0]);
 
             // and insert it!
-            const newPage = pdfDoc.insertPage(1, willCopy);
+            const newPage = pdfDoc.insertPage(i + 1, willCopy);
 
-            // do weird stuff with the forms:
+            // do weird stuff to get the forms to work:
 
             // find the forms
             const blankForm = blankDoc.getForm();
@@ -129,9 +129,88 @@ async function exportForm() {
 
     // Fill out the actual driving
 
-    // page 1
+    // Page 1
     for (let i = 0; i < Math.min(data[0].length, 25); i++) {
         form.getTextField(`Date and TimeRow${i + 1}`).setText(data[0][i][1]);
+
+        // time spent driving in easy to read format
+        const time =
+            divideWithRemainder(data[0][i][0], 60)[0] +
+            "hr " +
+            divideWithRemainder(data[0][i][0], 60)[1] +
+            "min";
+        form.getTextField(`Number of Driving HoursRow${i + 1}`).setText(time);
+        if (data[0][i][2]) {
+            form.getTextField(
+                `Number of After Dark Driving HoursRow${i + 1}`,
+            ).setText(time);
+        } else {
+            form.getTextField(
+                `Number of After Dark Driving HoursRow${i + 1}`,
+            ).setText("0");
+        }
+    }
+
+    // Middle pages
+    if (pagesNeeded > 2) {
+        // Go through each page (remember page 2 is the last one, so 3 is the second page)
+        for (let page = 3; page < pagesNeeded + 1; page++) {
+            // Go through the 25 items for this page. We know its a full 25 because if it wasn't, we would be on the last page, not a middle one.
+            for (let i = 0; i < 25; i++) {
+                console.log("NOW ON PAGE", page, "\nNOW ON item", i);
+
+                form.getTextField(`Date and TimeRow${i + 1}_${page}`).setText(
+                    data[0][i + 25 * (page - 2)][1],
+                );
+                // time spent driving in easy to read format
+                const time =
+                    divideWithRemainder(data[0][i + ((page - 2) * 25)][0], 60)[0] +
+                    "hr " +
+                    divideWithRemainder(data[0][i + ((page - 2) * 25)][0], 60)[1] +
+                    "min";
+                form.getTextField(
+                    `Number of Driving HoursRow${i + 1}_${page}`,
+                ).setText(time);
+                if (data[0][i + 25 * (page - 2)][2]) {
+                    form.getTextField(
+                        `Number of After Dark Driving HoursRow${i + 1}_${page}`,
+                    ).setText(time);
+                } else {
+                    form.getTextField(
+                        `Number of After Dark Driving HoursRow${i + 1}_${page}`,
+                    ).setText("0");
+                }
+            }
+        }
+    }
+
+    // Final page (called page 2)
+    if (pagesNeeded > 1) {
+        // Go through the remaining items in the drives
+        for (let i = 0; i < data[0].length - (pagesNeeded - 1) * 25; i++) {
+            form.getTextField(`Date and TimeRow${i + 1}_2`).setText(
+                data[0][i][1],
+            );
+
+            // time spent driving in easy to read format
+            const time =
+                divideWithRemainder(data[0][i][0], 60)[0] +
+                "hr " +
+                divideWithRemainder(data[0][i][0], 60)[1] +
+                "min";
+            form.getTextField(`Number of Driving HoursRow${i + 1}_2`).setText(
+                time,
+            );
+            if (data[0][i][2]) {
+                form.getTextField(
+                    `Number of After Dark Driving HoursRow${i + 1}_2`,
+                ).setText(time);
+            } else {
+                form.getTextField(
+                    `Number of After Dark Driving HoursRow${i + 1}_2`,
+                ).setText("0");
+            }
+        }
     }
 
     // save it and stuff like that
