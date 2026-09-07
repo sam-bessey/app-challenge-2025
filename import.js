@@ -12,50 +12,61 @@ function convertTime(time) {
 }
 
 function importDrives(event) {
-    const file = event.target.files[0];
-    console.log("File", file);
+    try {
+        const file = event.target.files[0];
+        console.log("File", file);
 
-    // Check for errors
-    if (!file) {
-        alert("There was an error uploading your file. Please try again.");
-        return;
-    }
-
-    // Read the file
-    const reader = new FileReader();
-    reader.onload = () => {
-        console.log(reader.result);
-
-        // Convert it to an array
-        const rows = reader.result.split("\n");
-        let importedDrives = rows.map((row) => {
-            return row.split(",");
-        });
-        importedDrives.shift(); // Remove the header row
-
-        // Format it so it's compatible with the rest of the app
-        for (let i = 0; i < importedDrives.length; i++) {
-            formattedDrives.push([
-                convertTime(importedDrives[i][1]),
-                importedDrives[i][0],
-                importedDrives[i][2] !== "0",
-            ]);
+        // Check for errors
+        if (!file) {
+            alert("There was an error uploading your file. Please try again.");
+            return;
         }
 
-        console.log("New drives", formattedDrives);
+        // Read the file
+        const reader = new FileReader();
+        reader.onload = () => {
+            console.log(reader.result);
 
-        // Hide file upload menu and show add/replace menu
-        document.getElementById("upload").hidden = true;
-        document.getElementById("controls").hidden = false;
-    };
+            // Convert it to an array
+            const rows = reader.result.split(/\r?\n/);
+            let importedDrives = rows.map((row) => {
+                return row.split(",");
+            });
+            importedDrives.shift(); // Remove the header row
 
-    // Show error message if something goes wrong
-    reader.onerror = () => {
-        alert("There was an error reading your file. Please try again");
-    };
+            // Format it so it's compatible with the rest of the app
+            formattedDrives = [];
+            for (let i = 0; i < importedDrives.length; i++) {
+                if (
+                    importedDrives[i].length < 3 ||
+                    importedDrives[i].join("").trim() === ""
+                ) {
+                    continue; // Skip empty/trailing lines
+                }
+                formattedDrives.push([
+                    convertTime(importedDrives[i][1].trim()),
+                    importedDrives[i][0].trim(),
+                    importedDrives[i][2].trim() !== "0",
+                ]);
+            }
 
-    // Read the file!
-    reader.readAsText(file);
+            console.log("New drives", formattedDrives);
+
+            // Hide file upload menu and show add/replace menu
+            document.getElementById("upload").hidden = true;
+            document.getElementById("controls").hidden = false;
+        };
+
+        // Show error message if something goes wrong
+        reader.onerror = () => {
+            alert("There was an error reading your file. Please try again");
+        };
+
+        // Read the file!
+        reader.readAsText(file);
+    } catch (error) {
+        alert("Something went wrong while importing your drives.");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
